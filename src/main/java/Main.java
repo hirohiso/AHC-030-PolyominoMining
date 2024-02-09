@@ -29,11 +29,13 @@ public class Main {
         var M = fs.ni();
         var e = fs.n();
 
+        var max = 0;
         for (int i = 0; i < M; i++) {
             var d = fs.ni();
             for (int j = 0; j < d; j++) {
                 var x = fs.ni();
                 var y = fs.ni();
+                max++;
             }
         }
         //確定マス
@@ -44,12 +46,19 @@ public class Main {
         }
 
         //推測フェーズ
+        var cnt = 0;
+        LOOP:
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 pw.println("q 1 "+ i +" " + j);
                 pw.flush();
                 var v = fs.ni();
                 grid[i][j] = v;
+                cnt += v;
+
+                if(cnt == max){
+                    break LOOP;
+                }
             }
         }
 
@@ -59,7 +68,7 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if(grid[i][j] > 0){
+                if(grid[i][j] > 0 && grid[i][j] != Integer.MAX_VALUE){
                     list.add(new Pair(i,j));
                 }
             }
