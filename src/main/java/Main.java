@@ -39,25 +39,63 @@ public class Main {
             }
         }
         //確定マス
-
-        var grid = new int [N][N];
+        var grid = new int[N][N];
         for (int i = 0; i < grid.length; i++) {
-            Arrays.fill(grid[i],Integer.MAX_VALUE);
+            Arrays.fill(grid[i], Integer.MAX_VALUE);
         }
 
         //推測フェーズ
+        var guesstable = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            var list = new LinkedList<Pair>();
+            for (int j = 0; j < N; j++) {
+                list.add(new Pair(i, j));
+            }
+            pw.print("q " + list.size() + " ");
+            for (Pair p : list) {
+                pw.print(p.a + " " + p.b + " ");
+            }
+            pw.println();
+            pw.flush();
+            var vs = fs.ni();
+            for (int j = 0; j < N; j++) {
+                guesstable[i][j] += vs;
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            var list = new LinkedList<Pair>();
+            for (int j = 0; j < N; j++) {
+                list.add(new Pair(j, i));
+            }
+            pw.print("q " + list.size() + " ");
+            for (Pair p : list) {
+                pw.print(p.a + " " + p.b + " ");
+            }
+            pw.println();
+            pw.flush();
+            var vs = fs.ni();
+            for (int j = 0; j < N; j++) {
+                guesstable[j][i] += vs;
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+
+            }
+        }
+
         var cnt = 0;
         LOOP:
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                pw.println("q 1 "+ i +" " + j);
+                pw.println("q 1 " + i + " " + j);
                 pw.flush();
 
                 var v = fs.ni();
                 grid[i][j] = v;
                 cnt += v;
 
-                if(cnt == max){
+                if (cnt == max) {
                     break LOOP;
                 }
             }
@@ -69,13 +107,13 @@ public class Main {
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if(grid[i][j] > 0 && grid[i][j] != Integer.MAX_VALUE){
-                    list.add(new Pair(i,j));
+                if (grid[i][j] > 0 && grid[i][j] != Integer.MAX_VALUE) {
+                    list.add(new Pair(i, j));
                 }
             }
         }
-        pw.print("a "+ list.size() + " ");
-        for (Pair p : list){
+        pw.print("a " + list.size() + " ");
+        for (Pair p : list) {
             pw.print(p.a + " " + p.b + " ");
         }
         pw.println();
