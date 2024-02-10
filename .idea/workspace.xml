@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="テスト">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="行、列ごとに多そうなところを占って優先的に探索していく">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/sample1-out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed1-out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed19-out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed19.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed29-out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed29.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +24,37 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PolyominoMining" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PolyominoMining" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PolyominoMining" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +75,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Gradle.MainTest.test.executor": "Run",
     "Gradle.PolyominoMining [:Main.main()].executor": "Run",
+    "Gradle.PolyominoMining [test].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -66,7 +104,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -98,8 +136,31 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="PolyominoMining [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Application.Main" />
       </list>
@@ -120,7 +181,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707478347436</updated>
-      <workItem from="1707478348722" duration="12333000" />
+      <workItem from="1707478348722" duration="13563000" />
     </task>
     <task id="LOCAL-00001" summary="初期">
       <option name="closed" value="true" />
@@ -162,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707529886310</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="行、列ごとに多そうなところを占って優先的に探索していく">
+      <option name="closed" value="true" />
+      <created>1707530951868</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707530951868</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +255,7 @@
     <MESSAGE value="spock追加" />
     <MESSAGE value="テスト作りかけ" />
     <MESSAGE value="テスト" />
-    <option name="LAST_COMMIT_MESSAGE" value="テスト" />
+    <MESSAGE value="行、列ごとに多そうなところを占って優先的に探索していく" />
+    <option name="LAST_COMMIT_MESSAGE" value="行、列ごとに多そうなところを占って優先的に探索していく" />
   </component>
 </project>

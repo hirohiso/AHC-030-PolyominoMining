@@ -4,7 +4,9 @@ class MainTest extends Specification {
 
     def "test"() {
         given:
-        def input = new File("./src/test/resources/sample/sample1.txt").readLines()
+        def input = new File(inFile).readLines()
+        def result = new File(outFile)
+        result.text =""
         def (String ns, String ms, String es) = input[0].split(/\s+/)
         def n = ns.toInteger()
         def m = ms.toInteger()
@@ -16,7 +18,6 @@ class MainTest extends Specification {
         } as int[][]
         double[] normalize = input[2 * m + n + 1..<input.size()].collect { it -> it.toDouble() } as double[]
 
-
         def outs = new PipedOutputStream()
         def ins = new PipedInputStream()
         Thread thread = new Thread({
@@ -25,6 +26,7 @@ class MainTest extends Specification {
 
         when:
         thread.start()
+        sleep(50)
         def reader = ins.newReader()
         def sb = new StringBuilder()
         for (i in 0..m) {
@@ -39,7 +41,7 @@ class MainTest extends Specification {
 
         def cost = 0.0;
         while ((str = reader.readLine()) != null) {
-            println(str)
+            result << (str + "\n")
             def token = str.split(" ")
             if (token[0] == "q") {
                 if (token[1].toInteger() == 1) {
@@ -85,5 +87,14 @@ class MainTest extends Specification {
 
         then:
         0 == 0
+        thread.join()
+
+
+        where:
+        inFile || outFile
+        "./src/test/resources/sample/sample1.txt" || "./src/test/resources/sample/sample1-out.txt"
+        "./src/test/resources/sample/seed1.txt" || "./src/test/resources/sample/seed1-out.txt"
+        "./src/test/resources/sample/seed19.txt" || "./src/test/resources/sample/seed19-out.txt"
+        "./src/test/resources/sample/seed29.txt" || "./src/test/resources/sample/seed29-out.txt"
     }
 }
