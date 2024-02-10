@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="ignore修正">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/sample1-out.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed1-out.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed19-out.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed29-out.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +97,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
+  <component name="RunManager" selected="Gradle.MainTest.test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -157,8 +153,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.MainTest.test" />
+        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -178,7 +174,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707478347436</updated>
-      <workItem from="1707478348722" duration="14588000" />
+      <workItem from="1707478348722" duration="17269000" />
     </task>
     <task id="LOCAL-00001" summary="初期">
       <option name="closed" value="true" />
@@ -244,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707541975284</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ignore修正">
+      <option name="closed" value="true" />
+      <created>1707542121912</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707542121912</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

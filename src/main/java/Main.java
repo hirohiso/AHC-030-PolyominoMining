@@ -78,26 +78,68 @@ public class Main {
                 guesstable[j][i] += vs;
             }
         }
-        var target = new LinkedList<Triple>();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                var tri = new Triple(i,j,guesstable[i][j]);
-                target.add(tri);
-            }
-        }
-        Collections.sort(target,Comparator.comparingLong(t -> -t.c));
         var cnt = 0;
-        for (Triple t :target){
-            pw.println("q 1 " + t.a + " " + t.b);
+        var stack = new LinkedList<Pair>();
+        while (true) {
+            var i = -1;
+            var j = -1;
+            if (stack.size() == 0) {
+                var target = -1;
+                for (int k = 0; k < N; k++) {
+                    for (int l = 0; l < N; l++) {
+                        if (grid[k][l] != Integer.MAX_VALUE) {
+                            continue;
+                        }
+                        if (target < guesstable[k][l]) {
+                            target = guesstable[k][l];
+                            i = k;
+                            j = l;
+                        }
+                    }
+                }
+            } else {
+                var p = stack.pollFirst();
+                i = p.a;
+                j = p.b;
+            }
+
+            if (grid[i][j] != Integer.MAX_VALUE) {
+                continue;
+            }
+
+            pw.println("q 1 " + i + " " + j);
             pw.flush();
             var v = fs.ni();
-            grid[t.a][t.b] = v;
+            grid[i][j] = v;
+            //guess更新
+            for (int k = 0; k < N; k++) {
+                if (Math.abs(i - k) <= 1) {
+                    guesstable[k][j] += (v != 0 ? +v : -1);
+                }
+                if (Math.abs(j - k) <= 1) {
+                    guesstable[i][k] += (v != 0 ? +v : -1);
+                }
+            }
+            if(v != 0){
+                for (int k = -1; k <= 1; k++) {
+                    for (int l = -1; l <= 1; l++) {
+                        if(k == l){
+                            continue;
+                        }
+                        if (0 <= i + k && i + k < N && 0 <= j + l && j + l < N) {
+                            if(grid[i + k][j + l] != Integer.MAX_VALUE){
+                                continue;
+                            }
+                            stack.addLast(new Pair(i + k, j + l));
+                        }
+                    }
+                }
+            }
             cnt += v;
             if (cnt == max) {
                 break;
             }
         }
-
 
         //回答フェーズ
         var list = new LinkedList<Pair>();
@@ -122,7 +164,7 @@ public class Main {
     record TTri<S, T, U>(S a, T b, U c) {
     }
 
-    record Pair(long a, long b) {
+    record Pair(int a, int b) {
     }
 
     record Triple(int a, int b, long c) {
