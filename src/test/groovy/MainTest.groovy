@@ -9,9 +9,6 @@ class MainTest extends Specification {
         def n = ns.toInteger()
         def m = ms.toInteger()
         def e = es.toDouble()
-        println(n)
-        println(m)
-        println(e)
 
         //読み込み
         int[][] grid = input[2 * m + 1..2 * m + n].collect {
@@ -39,11 +36,14 @@ class MainTest extends Specification {
         //対話開始
         String str;
         def countNo = 0;
+
+        def cost = 0.0;
         while ((str = reader.readLine()) != null) {
             println(str)
             def token = str.split(" ")
             if (token[0] == "q") {
                 if (token[1].toInteger() == 1) {
+                    cost += 1
                     //採掘
                     def x = token[2].toInteger()
                     def y = token[3].toInteger()
@@ -56,6 +56,7 @@ class MainTest extends Specification {
                     //占い
                     def p = normalize[countNo]
                     def size = token[1].toInteger()
+                    cost += (1 / Math.sqrt(size))
                     def sumv = 0;
                     //v(i,j)の合計値を求める
                     for (i in 0..<size) {
@@ -77,6 +78,7 @@ class MainTest extends Specification {
             } else {
                 //回答
                 //todo: 答え合わせ
+                println cost
                 break;
             }
         }

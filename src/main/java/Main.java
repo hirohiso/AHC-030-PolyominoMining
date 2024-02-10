@@ -78,33 +78,29 @@ public class Main {
                 guesstable[j][i] += vs;
             }
         }
+        var target = new LinkedList<Triple>();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-
+                var tri = new Triple(i,j,guesstable[i][j]);
+                target.add(tri);
             }
         }
-
+        Collections.sort(target,Comparator.comparingLong(t -> -t.c));
         var cnt = 0;
-        LOOP:
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                pw.println("q 1 " + i + " " + j);
-                pw.flush();
-
-                var v = fs.ni();
-                grid[i][j] = v;
-                cnt += v;
-
-                if (cnt == max) {
-                    break LOOP;
-                }
+        for (Triple t :target){
+            pw.println("q 1 " + t.a + " " + t.b);
+            pw.flush();
+            var v = fs.ni();
+            grid[t.a][t.b] = v;
+            cnt += v;
+            if (cnt == max) {
+                break;
             }
         }
 
 
         //回答フェーズ
         var list = new LinkedList<Pair>();
-
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if (grid[i][j] > 0 && grid[i][j] != Integer.MAX_VALUE) {
@@ -129,7 +125,7 @@ public class Main {
     record Pair(long a, long b) {
     }
 
-    record Triple(long a, long b, long c) {
+    record Triple(int a, int b, long c) {
     }
 
     public static int[] concat(int[] a, int[] b) {

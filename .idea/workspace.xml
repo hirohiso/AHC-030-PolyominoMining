@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="テスト作りかけ">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="テスト">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
@@ -66,7 +66,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest.test">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -120,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707478347436</updated>
-      <workItem from="1707478348722" duration="11330000" />
+      <workItem from="1707478348722" duration="12333000" />
     </task>
     <task id="LOCAL-00001" summary="初期">
       <option name="closed" value="true" />
@@ -154,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707524370359</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="テスト">
+      <option name="closed" value="true" />
+      <created>1707529886310</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707529886310</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +185,7 @@
     <MESSAGE value="探索不要（油田を調べ切ったら採掘しない）よう修正" />
     <MESSAGE value="spock追加" />
     <MESSAGE value="テスト作りかけ" />
-    <option name="LAST_COMMIT_MESSAGE" value="テスト作りかけ" />
+    <MESSAGE value="テスト" />
+    <option name="LAST_COMMIT_MESSAGE" value="テスト" />
   </component>
 </project>
