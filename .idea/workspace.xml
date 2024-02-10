@@ -5,11 +5,308 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="油田の上下左右の地点を優先的に探索するように修正">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed68.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed71.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0000.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0001.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0002.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0003.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0004.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0005.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0006.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0007.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0008.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0009.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0010.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0011.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0012.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0013.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0014.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0015.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0016.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0017.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0018.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0019.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0020.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0021.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0022.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0023.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0024.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0025.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0026.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0027.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0028.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0029.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0030.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0031.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0032.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0033.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0034.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0035.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0036.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0037.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0038.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0039.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0040.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0041.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0042.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0043.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0044.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0045.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0046.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0047.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0048.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0049.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0050.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0051.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0052.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0053.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0054.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0055.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0056.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0057.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0058.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0059.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0060.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0061.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0062.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0063.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0064.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0065.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0066.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0067.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0068.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0069.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0070.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0071.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0072.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0073.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0074.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0075.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0076.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0077.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0078.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0079.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0080.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0081.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0082.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0083.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0084.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0085.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0086.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0087.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0088.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0089.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0090.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0091.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0092.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0093.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0094.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0095.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0096.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0097.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0098.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0099.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0100.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0101.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0102.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0103.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0104.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0105.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0106.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0107.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0108.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0109.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0110.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0111.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0112.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0113.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0114.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0115.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0116.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0117.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0118.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0119.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0120.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0121.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0122.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0123.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0124.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0125.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0126.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0127.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0128.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0129.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0130.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0131.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0132.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0133.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0134.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0135.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0136.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0137.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0138.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0139.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0140.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0141.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0142.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0143.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0144.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0145.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0146.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0147.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0148.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0149.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0150.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0151.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0152.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0153.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0154.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0155.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0156.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0157.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0158.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0159.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0160.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0161.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0162.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0163.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0164.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0165.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0166.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0167.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0168.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0169.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0170.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0171.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0172.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0173.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0174.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0175.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0176.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0177.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0178.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0179.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0180.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0181.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0182.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0183.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0184.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0185.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0186.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0187.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0188.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0189.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0190.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0191.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0192.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0193.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0194.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0195.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0196.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0197.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0198.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0199.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0200.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0201.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0202.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0203.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0204.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0205.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0206.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0207.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0208.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0209.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0210.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0211.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0212.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0213.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0214.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0215.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0216.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0217.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0218.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0219.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0220.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0221.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0222.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0223.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0224.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0225.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0226.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0227.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0228.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0229.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0230.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0231.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0232.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0233.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0234.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0235.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0236.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0237.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0238.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0239.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0240.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0241.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0242.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0243.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0244.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0245.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0246.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0247.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0248.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0249.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0250.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0251.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0252.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0253.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0254.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0255.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0256.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0257.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0258.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0259.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0260.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0261.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0262.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0263.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0264.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0265.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0266.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0267.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0268.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0269.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0270.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0271.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0272.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0273.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0274.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0275.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0276.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0277.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0278.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0279.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0280.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0281.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0282.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0283.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0284.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0285.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0286.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0287.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0288.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0289.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0290.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0291.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0292.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0293.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0294.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0295.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0296.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0297.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0298.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/in/0299.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,9 +353,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2c81Mf7nAsOfsszOlEZoWu29GTU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,29 +364,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.MainTest.test.executor": "Run",
-    "Gradle.PolyominoMining [:Main.main()].executor": "Run",
-    "Gradle.PolyominoMining [test].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "Spock",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Spock": "spock.lang.Specification",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.MainTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PolyominoMining [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PolyominoMining [test].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;Spock&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Spock&quot;: &quot;spock.lang.Specification&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="spock.lang.Specification" />

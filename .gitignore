@@ -4,6 +4,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 *-out.txt
+/src/test/resources/out/*.txt
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

@@ -5,8 +5,9 @@ class MainTest extends Specification {
     def "test"() {
         given:
         def input = new File(inFile).readLines()
-        def result = new File(outFile)
-        result.text =""
+        def result = new File(inFile.replace('/in/', '/out/'))
+        result.parentFile.mkdirs()
+        result.text = ""
         def (String ns, String ms, String es) = input[0].split(/\s+/)
         def n = ns.toInteger()
         def m = ms.toInteger()
@@ -40,6 +41,8 @@ class MainTest extends Specification {
         def countNo = 0;
 
         def cost = 0.0;
+        def totalmine = 0;
+        def zeromine = 0;
         while ((str = reader.readLine()) != null) {
             result << (str + "\n")
             def token = str.split(" ")
@@ -47,13 +50,16 @@ class MainTest extends Specification {
                 if (token[1].toInteger() == 1) {
                     cost += 1
                     //採掘
+                    totalmine++
                     def x = token[2].toInteger()
                     def y = token[3].toInteger()
                     def temp = new StringBuilder()
                     temp.append(grid[x][y]).append("\n")
-
                     outs.write(temp.toString().getBytes("UTF-8"))
                     outs.flush()
+                    if (grid[x][y] == 0){
+                        zeromine++;
+                    }
                 } else {
                     //占い
                     def p = normalize[countNo]
@@ -70,7 +76,7 @@ class MainTest extends Specification {
                     def temp = new StringBuilder()
                     def mean = (size - sumv) * e + sumv * (1 - e)
                     def vari = size * (1 - e) * e
-                    def vs = Math.max(0 ,Math.round(p * vari + mean));
+                    def vs = Math.max(0, Math.round(p * vari + mean));
                     temp.append(vs).append("\n")
                     outs.write(temp.toString().getBytes("UTF-8"))
                     outs.flush()
@@ -80,7 +86,7 @@ class MainTest extends Specification {
             } else {
                 //回答
                 //todo: 答え合わせ
-                println cost
+                print "コスト[" + cost +"]" +"失敗率["+zeromine/totalmine+"]"
                 break;
             }
         }
@@ -89,15 +95,17 @@ class MainTest extends Specification {
         0 == 0
         thread.join()
 
-
         where:
-        inFile || outFile
-        "./src/test/resources/sample/sample1.txt" || "./src/test/resources/sample/sample1-out.txt"
-        "./src/test/resources/sample/seed1.txt" || "./src/test/resources/sample/seed1-out.txt"
-        "./src/test/resources/sample/seed2.txt" || "./src/test/resources/sample/seed2-out.txt"
-        "./src/test/resources/sample/seed19.txt" || "./src/test/resources/sample/seed19-out.txt"
-        "./src/test/resources/sample/seed29.txt" || "./src/test/resources/sample/seed29-out.txt"
-        "./src/test/resources/sample/seed68.txt" || "./src/test/resources/sample/seed68-out.txt"
-        "./src/test/resources/sample/seed71.txt" || "./src/test/resources/sample/seed71-out.txt"
+        inFile<< getTxtFilesFromFolder("./src/test/resources/in/")
+    }
+
+    // 指定されたフォルダから.txtファイル一覧を取得するヘルパーメソッド
+    static List<String> getTxtFilesFromFolder(String folderPath) {
+        return new File(folderPath).listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".txt")
+            }
+        })*.path // *.path で File オブジェクトからパスのリストを取得
     }
 }
