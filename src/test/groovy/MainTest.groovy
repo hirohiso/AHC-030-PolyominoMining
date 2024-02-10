@@ -94,7 +94,10 @@ class MainTest extends Specification {
         inFile || outFile
         "./src/test/resources/sample/sample1.txt" || "./src/test/resources/sample/sample1-out.txt"
         "./src/test/resources/sample/seed1.txt" || "./src/test/resources/sample/seed1-out.txt"
+        "./src/test/resources/sample/seed2.txt" || "./src/test/resources/sample/seed2-out.txt"
         "./src/test/resources/sample/seed19.txt" || "./src/test/resources/sample/seed19-out.txt"
         "./src/test/resources/sample/seed29.txt" || "./src/test/resources/sample/seed29-out.txt"
+        "./src/test/resources/sample/seed68.txt" || "./src/test/resources/sample/seed68-out.txt"
+        "./src/test/resources/sample/seed71.txt" || "./src/test/resources/sample/seed71-out.txt"
     }
 }

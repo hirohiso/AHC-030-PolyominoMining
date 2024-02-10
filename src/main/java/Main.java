@@ -85,6 +85,7 @@ public class Main {
             var j = -1;
             if (stack.size() == 0) {
                 var target = -1;
+                updateGuess(guesstable, grid);
                 for (int k = 0; k < N; k++) {
                     for (int l = 0; l < N; l++) {
                         if (grid[k][l] != Integer.MAX_VALUE) {
@@ -120,18 +121,16 @@ public class Main {
                     guesstable[i][k] += (v != 0 ? +v : -1);
                 }
             }
-            if(v != 0){
-                for (int k = -1; k <= 1; k++) {
-                    for (int l = -1; l <= 1; l++) {
-                        if(k == l){
+            if (v != 0) {
+                var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+                for (int k = 0; k < d.length; k++) {
+                    var x = i + d[k][0];
+                    var y = j + d[k][1];
+                    if (0 <= x && x < N && 0 <= y && y < N) {
+                        if (grid[x][y] != Integer.MAX_VALUE) {
                             continue;
                         }
-                        if (0 <= i + k && i + k < N && 0 <= j + l && j + l < N) {
-                            if(grid[i + k][j + l] != Integer.MAX_VALUE){
-                                continue;
-                            }
-                            stack.addLast(new Pair(i + k, j + l));
-                        }
+                        stack.addLast(new Pair(x, y));
                     }
                 }
             }
@@ -155,6 +154,25 @@ public class Main {
             pw.print(p.a + " " + p.b + " ");
         }
         pw.println();
+    }
+
+    private static void updateGuess(int[][] table, int[][] wakwak) {
+        var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[0].length; j++) {
+                var cnt = 0;
+                for (int k = 0; k < d.length; k++) {
+                    var x = i + d[k][0];
+                    var y = j + d[k][1];
+                    if (0 <= x && x < wakwak.length && 0 <= y && y < wakwak[0].length) {
+                        if (wakwak[x][y] == 0) {
+                            cnt++;
+                        }
+                    }
+                }
+                table[i][j] = Math.max(0, table[i][j] - cnt);
+            }
+        }
     }
 
     //--------------

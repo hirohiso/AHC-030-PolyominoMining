@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="ignore修正">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="油田の上下左右の地点を優先的に探索するように修正">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed68.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed71.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +178,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707478347436</updated>
-      <workItem from="1707478348722" duration="17269000" />
+      <workItem from="1707478348722" duration="22637000" />
     </task>
     <task id="LOCAL-00001" summary="初期">
       <option name="closed" value="true" />
@@ -248,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707542121912</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="油田の上下左右の地点を優先的に探索するように修正">
+      <option name="closed" value="true" />
+      <created>1707544870432</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707544870432</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +287,7 @@
     <MESSAGE value="行、列ごとに多そうなところを占って優先的に探索していく" />
     <MESSAGE value="複数のシードでテストできるように修正" />
     <MESSAGE value="ignore修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore修正" />
+    <MESSAGE value="油田の上下左右の地点を優先的に探索するように修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="油田の上下左右の地点を優先的に探索するように修正" />
   </component>
 </project>
