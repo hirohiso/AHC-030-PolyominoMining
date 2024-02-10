@@ -52,6 +52,7 @@ public class Main {
             for (int j = 0; j < N; j++) {
                 pw.println("q 1 "+ i +" " + j);
                 pw.flush();
+
                 var v = fs.ni();
                 grid[i][j] = v;
                 cnt += v;
