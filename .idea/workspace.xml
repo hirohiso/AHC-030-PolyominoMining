@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="複数のシードでテストできるように修正">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="ignore修正">
       <change afterPath="$PROJECT_DIR$/src/test/resources/sample/sample1-out.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed1-out.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/resources/sample/seed19-out.txt" afterDir="false" />
@@ -178,7 +178,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1707478347436</updated>
-      <workItem from="1707478348722" duration="14521000" />
+      <workItem from="1707478348722" duration="14588000" />
     </task>
     <task id="LOCAL-00001" summary="初期">
       <option name="closed" value="true" />
@@ -236,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707536436901</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ignore修正">
+      <option name="closed" value="true" />
+      <created>1707541975284</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707541975284</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +270,7 @@
     <MESSAGE value="テスト" />
     <MESSAGE value="行、列ごとに多そうなところを占って優先的に探索していく" />
     <MESSAGE value="複数のシードでテストできるように修正" />
-    <option name="LAST_COMMIT_MESSAGE" value="複数のシードでテストできるように修正" />
+    <MESSAGE value="ignore修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore修正" />
   </component>
 </project>
