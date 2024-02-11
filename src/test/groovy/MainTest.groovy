@@ -135,6 +135,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path.sort() // *.path で File オブジェクトからパスのリストを取得
+        })*.path.sort()[0..10] //todo:一旦絞る
     }
 }

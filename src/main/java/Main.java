@@ -23,14 +23,18 @@ public class Main {
 
         var connector = new InteractiveConnector(pw, fs);
 
+        var oilList = new LinkedList<OilFieldSet>();
         var max = 0;
         for (int i = 0; i < M; i++) {
             var d = fs.ni();
+            var list = new LinkedList<Pair>();
             for (int j = 0; j < d; j++) {
                 var x = fs.ni();
                 var y = fs.ni();
+                list.add(new Pair(x, y));
                 max++;
             }
+            oilList.add(new OilFieldSet(list));
         }
         //確定マス
         var result = new MiningResult(N);
@@ -88,7 +92,6 @@ public class Main {
                 }
             } else {
                 //マイクロ探索
-
                 var p = stack.pollFirst();
                 i = p.a;
                 j = p.b;
@@ -155,6 +158,19 @@ public class Main {
 
     public static class MicroGuesser {
 
+    }
+
+    public static class OilFieldSet {
+        private final boolean[][] oil;
+
+        public OilFieldSet(List<Pair> ps) {
+            var maxX = ps.stream().mapToInt(p -> p.a).max().getAsInt();
+            var maxY = ps.stream().mapToInt(p -> p.b).max().getAsInt();
+            this.oil = new boolean[maxX + 1][maxY + 1];
+            for (Pair p : ps) {
+                oil[p.a][p.b] = true;
+            }
+        }
     }
 
     public static class MiningResult {
