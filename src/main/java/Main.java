@@ -20,6 +20,7 @@ public class Main {
         var N = fs.ni();
         var M = fs.ni();
         var e = fs.n();
+        var rand = new Random(0);
 
         var connector = new InteractiveConnector(pw, fs);
 
@@ -40,32 +41,8 @@ public class Main {
         var result = new MiningResult(N);
 
         //推測フェーズ
-
-        //guesstable: 油田あるかもテーブル
-        var guesstable = new int[N][N];
-
-        //行列ごとに占って油田あるかもマスを初期化
-        for (int i = 0; i < N; i++) {
-            var list = new LinkedList<Pair>();
-            for (int j = 0; j < N; j++) {
-                list.add(new Pair(i, j));
-            }
-
-            var vs = connector.foresee(list);
-            for (int j = 0; j < N; j++) {
-                guesstable[i][j] += vs;
-            }
-        }
-        for (int i = 0; i < N; i++) {
-            var list = new LinkedList<Pair>();
-            for (int j = 0; j < N; j++) {
-                list.add(new Pair(j, i));
-            }
-            var vs = connector.foresee(list);
-            for (int j = 0; j < N; j++) {
-                guesstable[j][i] += vs;
-            }
-        }
+        var macroGuesser = new MacroGuesser(N, oilList);
+        macroGuesser.setup(connector);
         var cnt = 0;
         var stack = new LinkedList<Pair>();
         while (true) {
@@ -73,23 +50,9 @@ public class Main {
             var j = -1;
             if (stack.size() == 0) {
                 //マクロ探索
-                var target = -1;
-                //採掘した結果にあわせて、油田あるかもマスを更新(油田なしマスの近くはなさげ、未探索マスの近くはありげ)
-                updateGuess(guesstable, result);
-
-                //油田あるかもテーブルの中から一番ありそうなますを選択する
-                for (int k = 0; k < N; k++) {
-                    for (int l = 0; l < N; l++) {
-                        if (result.isMined(k, l)) {
-                            continue;
-                        }
-                        if (target < guesstable[k][l]) {
-                            target = guesstable[k][l];
-                            i = k;
-                            j = l;
-                        }
-                    }
-                }
+                var p = macroGuesser.highPoint(1, result).get(0);
+                i = p.a;
+                j = p.b;
             } else {
                 //マイクロ探索
                 var p = stack.pollFirst();
@@ -102,9 +65,10 @@ public class Main {
 
             var v = connector.mine(new Pair(i, j));
             result.set(i, j, v);
+            macroGuesser.update(result);
 
             if (v != 0) {
-                //マイクロ探索：見つけた油田の上下左右を探索し続ける
+                //マイクロ探索：見つけた油田の上下左右を確率的に探索し続ける
                 var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
                 for (int k = 0; k < d.length; k++) {
                     var x = i + d[k][0];
@@ -113,10 +77,13 @@ public class Main {
                         if (result.isMined(x, y)) {
                             continue;
                         }
-                        stack.addLast(new Pair(x, y));
+                        if(macroGuesser.table[x][y] > 0){
+                            stack.addLast(new Pair(x, y));
+                        }
                     }
                 }
             }
+
             //油田を全部見つけたら終了
             cnt += v;
             if (cnt == max) {
@@ -129,31 +96,213 @@ public class Main {
         connector.answer(list);
     }
 
-    private static void updateGuess(int[][] table, MiningResult result) {
-        var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+    public static class MacroGuesser {
+        private final double[][] table;
+        private final LinkedList<OilFieldSet> oilList;
 
-        for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table[0].length; j++) {
-                var cntzero = 0;
-                var cntInf = 0;
-                for (int k = 0; k < d.length; k++) {
-                    var x = i + d[k][0];
-                    var y = j + d[k][1];
-                    if (result.isRange(x, y)) {
-                        if (result.isNoOilField(x, y)) {
-                            cntzero++;
-                        } else if (result.isNotMined(x, y)) {
-                            cntInf++;
-                        }
+        private final Random random = new Random(0);
+
+        private int[] setupLines;
+        private int[] setupColumns;
+
+        private int[][] roundzero;
+
+        public MacroGuesser(int n, LinkedList<OilFieldSet> oilList) {
+            this.table = new double[n][n];
+            this.oilList = oilList;
+            this.roundzero = new int[n][n];
+            int size = oilList.stream().mapToInt(set -> set.size()).sum();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    table[i][j] = (double) size / (n * n);
+                }
+            }
+        }
+
+        private void printout() {
+            for (int i = 0; i < table.length; i++) {
+                System.out.println(Arrays.toString(table[i]));
+            }
+        }
+
+        //行列から確率を更新する.まだ未採掘状態のときに利用することを想定
+        public void setup(InteractiveConnector connector) {
+            var x = table.length;
+            var y = table[0].length;
+
+            //行列ごとに占って油田あるかもマスを初期化
+            var lines = new int[x];
+            {
+                for (int i = 0; i < x; i++) {
+                    var list = new LinkedList<Pair>();
+                    for (int j = 0; j < y; j++) {
+                        list.add(new Pair(i, j));
+                    }
+                    lines[i] = connector.foresee(list);
+                }
+            }
+
+            var columns = new int[y];
+            {
+                for (int i = 0; i < y; i++) {
+                    var list = new LinkedList<Pair>();
+                    for (int j = 0; j < x; j++) {
+                        list.add(new Pair(j, i));
+                    }
+                    columns[i] = connector.foresee(list);
+                }
+            }
+
+            //1000件ランダムに候補を生成してそれっぽいものを使って初期の確度を決める
+            var genes = new LinkedList<OilV>();
+            for (int i = 0; i < 1000; i++) {
+                var temp = generate();
+                //縦横の二乗誤差を計算
+                var xgosa = 0;
+                for (int j = 0; j < temp.length; j++) {
+                    var cnt = 0;
+                    for (int k = 0; k < temp[0].length; k++) {
+                        cnt += temp[j][k];
+                    }
+                    var d = lines[j] - cnt;
+                    xgosa += d * d;
+                }
+                var ygosa = 0;
+                for (int j = 0; j < temp.length; j++) {
+                    var cnt = 0;
+                    for (int k = 0; k < temp[0].length; k++) {
+                        cnt += temp[k][j];
+                    }
+                    var d = columns[j] - cnt;
+                    ygosa += d * d;
+                }
+                genes.add(new OilV(temp, xgosa, ygosa));
+            }
+            Collections.sort(genes, Comparator.comparingLong(o -> o.xvalue * o.yvalue));
+            //上位３０件を使って、それっぽい期待値を作成する
+            var select = new LinkedList<OilV>();
+            for (int i = 0; i < 30; i++) {
+                select.add(genes.get(i));
+            }
+            var temp = new long[x][y];
+            var count = 0l;
+            for (OilV o : select) {
+                var t = o.olis;
+                for (int i = 0; i < t.length; i++) {
+                    for (int j = 0; j < t[0].length; j++) {
+                        //誤差が少ないほど高い重みつけをする
+                        var v = t[i][j];
+                        temp[i][j] += v;
+                        count += v;
                     }
                 }
-                table[i][j] = Math.max(0, table[i][j] - cntzero);
-                table[i][j] += cntInf;
             }
+            for (int i = 0; i < table.length; i++) {
+                for (int j = 0; j < table[0].length; j++) {
+                    table[i][j] = (double) temp[i][j] / count;
+                }
+            }
+
+            //あとで使うので占い結果は保持しておく
+            setupColumns = columns;
+            setupLines = lines;
+        }
+
+        //油田をランダムに島に配置していく
+        private int[][] generate() {
+            var xi = table.length;
+            var yi = table[0].length;
+            var result = new int[table.length][table[0].length];
+            for (OilFieldSet oilf : oilList) {
+                var xo = oilf.oil.length;
+                var yo = oilf.oil[0].length;
+                var offset = random.nextInt((xi - xo + 1) * (yi - yo + 1));
+                var xoff = offset / (yi - yo + 1);
+                var yoff = offset % (yi - yo + 1);
+                for (int i = 0; i < xo; i++) {
+                    for (int j = 0; j < yo; j++) {
+                        result[i + xoff][j + yoff] += oilf.oil[i][j] ? 1 : 0;
+                    }
+                }
+            }
+            return result;
+        }
+
+        //採掘結果を元に確率を更新する
+        public void update(MiningResult result) {
+            var x = table.length;
+            var y = table[0].length;
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+                    var cntz = 0;
+                    var mi = 0;
+                    for (int k = 0; k < d.length; k++) {
+                        var ti = i + d[k][0];
+                        var tj = j + d[k][1];
+                        if (result.isRange(ti, tj)) {
+                            if (result.isNoOilField(ti, tj)) {
+                                cntz++;
+                            } else if (result.isNotMined(ti, tj)) {
+                                mi++;
+                            }
+                        }
+                    }
+                    if (roundzero[i][j] != cntz) {
+                        table[i][j] *= Math.pow(table[i][j], cntz);
+                        roundzero[i][j] = cntz;
+                    }
+                }
+            }
+        }
+
+
+        //確度の高い採掘地点を返す
+        public Pair pollMiningPoint() {
+            var i = 0;
+            var j = 0;
+            var prov = 0.0;
+            for (int k = 0; k < table.length; k++) {
+                for (int l = 0; l < table[0].length; l++) {
+                    if (prov < table[k][l]) {
+                        prov = table[k][l];
+                        i = k;
+                        j = l;
+                    }
+                }
+            }
+            return new Pair(i, j);
+        }
+
+        //確度の高いベストNを返却する。
+        public List<Pair> highPoint(int n, MiningResult result) {
+            var x = table.length;
+            var y = table[0].length;
+            var array = new Pair[x * y];
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < y; j++) {
+                    array[i * y + j] = new Pair(i, j);
+                }
+            }
+            Arrays.sort(array, Comparator.<Pair>comparingDouble(p -> table[p.a][p.b]).reversed());
+
+            var list = new LinkedList<Pair>();
+            var cnt = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (result.isNotMined(array[i].a, array[i].b)) {
+                    list.add(array[i]);
+                    cnt++;
+                    if (cnt == n) {
+                        break;
+                    }
+                }
+            }
+            return list;
         }
     }
 
-    public static class MacroGuesser {
+    record OilV(int[][] olis, int xvalue, int yvalue) {
+
     }
 
     public static class MicroGuesser {
@@ -162,6 +311,7 @@ public class Main {
 
     public static class OilFieldSet {
         private final boolean[][] oil;
+        private int size;
 
         public OilFieldSet(List<Pair> ps) {
             var maxX = ps.stream().mapToInt(p -> p.a).max().getAsInt();
@@ -170,6 +320,11 @@ public class Main {
             for (Pair p : ps) {
                 oil[p.a][p.b] = true;
             }
+            size = ps.size();
+        }
+
+        public int size() {
+            return size;
         }
     }
 

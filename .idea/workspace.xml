@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="正解判定追加">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="予知した油田の形を表すクラスを作成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
@@ -321,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707629074802</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="予知した油田の形を表すクラスを作成">
+      <option name="closed" value="true" />
+      <created>1707629975735</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1707629975735</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,6 +363,7 @@
     <MESSAGE value="リファクタリング&#10;&#10;採掘結果をクラスとして切り出し" />
     <MESSAGE value="コメントを追加" />
     <MESSAGE value="正解判定追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="正解判定追加" />
+    <MESSAGE value="予知した油田の形を表すクラスを作成" />
+    <option name="LAST_COMMIT_MESSAGE" value="予知した油田の形を表すクラスを作成" />
   </component>
 </project>
