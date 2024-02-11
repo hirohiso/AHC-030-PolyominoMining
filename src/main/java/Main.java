@@ -2,16 +2,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.Format;
 import java.util.*;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.function.IntPredicate;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @SuppressWarnings("unchecked")
 public class Main {
@@ -29,7 +21,7 @@ public class Main {
         var M = fs.ni();
         var e = fs.n();
 
-        var connector = new InteractiveConnector(pw,fs);
+        var connector = new InteractiveConnector(pw, fs);
 
         var max = 0;
         for (int i = 0; i < M; i++) {
@@ -41,10 +33,7 @@ public class Main {
             }
         }
         //確定マス
-        var grid = new int[N][N];
-        for (int i = 0; i < grid.length; i++) {
-            Arrays.fill(grid[i], Integer.MAX_VALUE);
-        }
+        var result = new MiningResult(N);
 
         //推測フェーズ
         var guesstable = new int[N][N];
@@ -75,11 +64,12 @@ public class Main {
             var i = -1;
             var j = -1;
             if (stack.size() == 0) {
+                //マクロ探索
                 var target = -1;
-                updateGuess(guesstable, grid);
+                updateGuess(guesstable, result);
                 for (int k = 0; k < N; k++) {
                     for (int l = 0; l < N; l++) {
-                        if (grid[k][l] != Integer.MAX_VALUE) {
+                        if (result.isMined(k, l)) {
                             continue;
                         }
                         if (target < guesstable[k][l]) {
@@ -90,16 +80,18 @@ public class Main {
                     }
                 }
             } else {
+                //マイクロ探索
                 var p = stack.pollFirst();
                 i = p.a;
                 j = p.b;
             }
-            if (grid[i][j] != Integer.MAX_VALUE) {
+            if (result.isMined(i, j)) {
                 continue;
             }
 
-            var v = connector.mine(new Pair(i,j));
-            grid[i][j] = v;
+            var v = connector.mine(new Pair(i, j));
+            result.set(i, j, v);
+
             //guess更新
             for (int k = 0; k < N; k++) {
                 if (Math.abs(i - k) <= 1) {
@@ -109,13 +101,14 @@ public class Main {
                     guesstable[i][k] += (v != 0 ? +v : -1);
                 }
             }
+
             if (v != 0) {
                 var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
                 for (int k = 0; k < d.length; k++) {
                     var x = i + d[k][0];
                     var y = j + d[k][1];
                     if (0 <= x && x < N && 0 <= y && y < N) {
-                        if (grid[x][y] != Integer.MAX_VALUE) {
+                        if (result.isMined(x, y)) {
                             continue;
                         }
                         stack.addLast(new Pair(x, y));
@@ -129,18 +122,11 @@ public class Main {
         }
 
         //回答フェーズ
-        var list = new LinkedList<Pair>();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (grid[i][j] > 0 && grid[i][j] != Integer.MAX_VALUE) {
-                    list.add(new Pair(i, j));
-                }
-            }
-        }
-       connector.answer(list);
+        var list = result.resultList();
+        connector.answer(list);
     }
 
-    private static void updateGuess(int[][] table, int[][] wakwak) {
+    private static void updateGuess(int[][] table, MiningResult result) {
         var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[0].length; j++) {
@@ -149,10 +135,10 @@ public class Main {
                 for (int k = 0; k < d.length; k++) {
                     var x = i + d[k][0];
                     var y = j + d[k][1];
-                    if (0 <= x && x < wakwak.length && 0 <= y && y < wakwak[0].length) {
-                        if (wakwak[x][y] == 0) {
+                    if (result.isRange(x, y)) {
+                        if (result.isNoOilField(x, y)) {
                             cntzero++;
-                        } else if (wakwak[x][y] == Integer.MAX_VALUE) {
+                        } else if (result.isNotMined(x, y)) {
                             cntInf++;
                         }
                     }
@@ -163,7 +149,77 @@ public class Main {
         }
     }
 
-    public static class InteractiveConnector{
+    public static class MacroGuesser {
+    }
+
+    public static class MicroGuesser {
+
+    }
+
+    public static class MiningResult {
+        private final int[][] grid;
+
+        public MiningResult(int n) {
+            this.grid = new int[n][n];
+            for (int i = 0; i < n; i++) {
+                Arrays.fill(grid[i], Integer.MAX_VALUE);
+            }
+        }
+
+        public void set(int i, int j, int v) {
+            valid(i, j);
+            if (0 <= i && i < grid.length && 0 <= j && j < grid[0].length) {
+                grid[i][j] = v;
+            }
+        }
+
+        public int get(int i, int j) {
+            valid(i, j);
+            return grid[i][j];
+        }
+
+        public boolean isRange(int i, int j) {
+            return 0 <= i && i < grid.length && 0 <= j && j < grid[0].length;
+        }
+
+        public boolean isMined(int i, int j) {
+            valid(i, j);
+            return grid[i][j] != Integer.MAX_VALUE;
+        }
+
+        public boolean isNotMined(int i, int j) {
+            valid(i, j);
+            return !isMined(i, j);
+        }
+
+        public boolean isOilField(int i, int j) {
+            valid(i, j);
+            return isMined(i, j) && grid[i][j] > 0;
+        }
+
+        public boolean isNoOilField(int i, int j) {
+            valid(i, j);
+            return isMined(i, j) && grid[i][j] == 0;
+        }
+
+        private void valid(int i, int j) {
+            assert 0 <= i && i < grid.length && 0 <= j && j < grid[0].length;
+        }
+
+        public List<Pair> resultList() {
+            var list = new LinkedList<Pair>();
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid.length; j++) {
+                    if (isOilField(i, j)) {
+                        list.add(new Pair(i, j));
+                    }
+                }
+            }
+            return list;
+        }
+    }
+
+    public static class InteractiveConnector {
         private final PrintWriter pw;
         private final FastScanner fs;
 
@@ -173,7 +229,7 @@ public class Main {
         }
 
         //占う
-        public int foresee(List<Pair> list){
+        public int foresee(List<Pair> list) {
             pw.print("q " + list.size() + " ");
             for (Pair p : list) {
                 pw.print(p.a + " " + p.b + " ");
@@ -184,7 +240,7 @@ public class Main {
         }
 
         //採掘する
-        public int mine(Pair p){
+        public int mine(Pair p) {
             pw.println("q 1 " + p.a + " " + p.b);
             pw.flush();
             return fs.ni();
@@ -192,7 +248,7 @@ public class Main {
 
         //回答する
 
-        public void answer(List<Pair> list){
+        public void answer(List<Pair> list) {
             pw.print("a " + list.size() + " ");
             for (Pair p : list) {
                 pw.print(p.a + " " + p.b + " ");

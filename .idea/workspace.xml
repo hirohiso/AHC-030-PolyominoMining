@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="未探索エリアが近くにたくさんある地点の優先度を上げる">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="リファクタリング&#10;&#10;インタラックティブ部分をクラスとして切り出し">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
@@ -41,6 +41,11 @@
                 <item name="PolyominoMining" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PolyominoMining" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -97,7 +102,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest.test">
+  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -151,8 +156,14 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.MainTest.test" />
+      <item itemvalue="Gradle.PolyominoMining [test]" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Application.Main" />
@@ -272,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707623108624</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="リファクタリング&#10;&#10;インタラックティブ部分をクラスとして切り出し">
+      <option name="closed" value="true" />
+      <created>1707623726423</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1707623726423</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +321,7 @@
     <MESSAGE value="油田の上下左右の地点を優先的に探索するように修正" />
     <MESSAGE value="テストケース300個追加" />
     <MESSAGE value="未探索エリアが近くにたくさんある地点の優先度を上げる" />
-    <option name="LAST_COMMIT_MESSAGE" value="未探索エリアが近くにたくさんある地点の優先度を上げる" />
+    <MESSAGE value="リファクタリング&#10;&#10;インタラックティブ部分をクラスとして切り出し" />
+    <option name="LAST_COMMIT_MESSAGE" value="リファクタリング&#10;&#10;インタラックティブ部分をクラスとして切り出し" />
   </component>
 </project>
