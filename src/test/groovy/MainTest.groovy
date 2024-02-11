@@ -86,7 +86,10 @@ class MainTest extends Specification {
             } else {
                 //回答
                 //todo: 答え合わせ
-                print "コスト[" + cost +"]" +"失敗率["+zeromine/totalmine+"]"
+                //全体的な失敗率やコスト改善率の平均、分散などの統計値が知りたい
+                //コスト改善率　= 実際のコスト /全部めくった時のコスト(N^2)
+                print cost +"," + zeromine/totalmine + "," + cost/(n * n)
+                println()
                 break;
             }
         }

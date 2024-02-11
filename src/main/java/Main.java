@@ -160,17 +160,21 @@ public class Main {
         var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[0].length; j++) {
-                var cnt = 0;
+                var cntzero = 0;
+                var cntInf = 0;
                 for (int k = 0; k < d.length; k++) {
                     var x = i + d[k][0];
                     var y = j + d[k][1];
                     if (0 <= x && x < wakwak.length && 0 <= y && y < wakwak[0].length) {
                         if (wakwak[x][y] == 0) {
-                            cnt++;
+                            cntzero++;
+                        } else if (wakwak[x][y] == Integer.MAX_VALUE) {
+                            cntInf++;
                         }
                     }
                 }
-                table[i][j] = Math.max(0, table[i][j] - cnt);
+                table[i][j] = Math.max(0, table[i][j] - cntzero);
+                table[i][j] += cntInf;
             }
         }
     }
