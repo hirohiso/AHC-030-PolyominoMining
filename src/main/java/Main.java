@@ -29,6 +29,8 @@ public class Main {
         var M = fs.ni();
         var e = fs.n();
 
+        var connector = new InteractiveConnector(pw,fs);
+
         var max = 0;
         for (int i = 0; i < M; i++) {
             var d = fs.ni();
@@ -51,13 +53,8 @@ public class Main {
             for (int j = 0; j < N; j++) {
                 list.add(new Pair(i, j));
             }
-            pw.print("q " + list.size() + " ");
-            for (Pair p : list) {
-                pw.print(p.a + " " + p.b + " ");
-            }
-            pw.println();
-            pw.flush();
-            var vs = fs.ni();
+
+            var vs = connector.foresee(list);
             for (int j = 0; j < N; j++) {
                 guesstable[i][j] += vs;
             }
@@ -67,13 +64,7 @@ public class Main {
             for (int j = 0; j < N; j++) {
                 list.add(new Pair(j, i));
             }
-            pw.print("q " + list.size() + " ");
-            for (Pair p : list) {
-                pw.print(p.a + " " + p.b + " ");
-            }
-            pw.println();
-            pw.flush();
-            var vs = fs.ni();
+            var vs = connector.foresee(list);
             for (int j = 0; j < N; j++) {
                 guesstable[j][i] += vs;
             }
@@ -103,14 +94,11 @@ public class Main {
                 i = p.a;
                 j = p.b;
             }
-
             if (grid[i][j] != Integer.MAX_VALUE) {
                 continue;
             }
 
-            pw.println("q 1 " + i + " " + j);
-            pw.flush();
-            var v = fs.ni();
+            var v = connector.mine(new Pair(i,j));
             grid[i][j] = v;
             //guess更新
             for (int k = 0; k < N; k++) {
@@ -149,11 +137,7 @@ public class Main {
                 }
             }
         }
-        pw.print("a " + list.size() + " ");
-        for (Pair p : list) {
-            pw.print(p.a + " " + p.b + " ");
-        }
-        pw.println();
+       connector.answer(list);
     }
 
     private static void updateGuess(int[][] table, int[][] wakwak) {
@@ -177,6 +161,46 @@ public class Main {
                 table[i][j] += cntInf;
             }
         }
+    }
+
+    public static class InteractiveConnector{
+        private final PrintWriter pw;
+        private final FastScanner fs;
+
+        public InteractiveConnector(PrintWriter pw, FastScanner fs) {
+            this.pw = pw;
+            this.fs = fs;
+        }
+
+        //占う
+        public int foresee(List<Pair> list){
+            pw.print("q " + list.size() + " ");
+            for (Pair p : list) {
+                pw.print(p.a + " " + p.b + " ");
+            }
+            pw.println();
+            pw.flush();
+            return fs.ni();
+        }
+
+        //採掘する
+        public int mine(Pair p){
+            pw.println("q 1 " + p.a + " " + p.b);
+            pw.flush();
+            return fs.ni();
+        }
+
+        //回答する
+
+        public void answer(List<Pair> list){
+            pw.print("a " + list.size() + " ");
+            for (Pair p : list) {
+                pw.print(p.a + " " + p.b + " ");
+            }
+            pw.println();
+        }
+
+
     }
 
     //--------------
