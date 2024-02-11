@@ -36,7 +36,11 @@ public class Main {
         var result = new MiningResult(N);
 
         //推測フェーズ
+
+        //guesstable: 油田あるかもテーブル
         var guesstable = new int[N][N];
+
+        //行列ごとに占って油田あるかもマスを初期化
         for (int i = 0; i < N; i++) {
             var list = new LinkedList<Pair>();
             for (int j = 0; j < N; j++) {
@@ -66,7 +70,10 @@ public class Main {
             if (stack.size() == 0) {
                 //マクロ探索
                 var target = -1;
+                //採掘した結果にあわせて、油田あるかもマスを更新(油田なしマスの近くはなさげ、未探索マスの近くはありげ)
                 updateGuess(guesstable, result);
+
+                //油田あるかもテーブルの中から一番ありそうなますを選択する
                 for (int k = 0; k < N; k++) {
                     for (int l = 0; l < N; l++) {
                         if (result.isMined(k, l)) {
@@ -81,6 +88,7 @@ public class Main {
                 }
             } else {
                 //マイクロ探索
+
                 var p = stack.pollFirst();
                 i = p.a;
                 j = p.b;
@@ -92,17 +100,8 @@ public class Main {
             var v = connector.mine(new Pair(i, j));
             result.set(i, j, v);
 
-            //guess更新
-            for (int k = 0; k < N; k++) {
-                if (Math.abs(i - k) <= 1) {
-                    guesstable[k][j] += (v != 0 ? +v : -1);
-                }
-                if (Math.abs(j - k) <= 1) {
-                    guesstable[i][k] += (v != 0 ? +v : -1);
-                }
-            }
-
             if (v != 0) {
+                //マイクロ探索：見つけた油田の上下左右を探索し続ける
                 var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
                 for (int k = 0; k < d.length; k++) {
                     var x = i + d[k][0];
@@ -115,6 +114,7 @@ public class Main {
                     }
                 }
             }
+            //油田を全部見つけたら終了
             cnt += v;
             if (cnt == max) {
                 break;
@@ -128,6 +128,7 @@ public class Main {
 
     private static void updateGuess(int[][] table, MiningResult result) {
         var d = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table[0].length; j++) {
                 var cntzero = 0;
