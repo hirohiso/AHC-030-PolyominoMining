@@ -43,6 +43,8 @@ class MainTest extends Specification {
         def cost = 0.0;
         def totalmine = 0;
         def zeromine = 0;
+
+        def actual = true;
         while ((str = reader.readLine()) != null) {
             result << (str + "\n")
             def token = str.split(" ")
@@ -57,7 +59,7 @@ class MainTest extends Specification {
                     temp.append(grid[x][y]).append("\n")
                     outs.write(temp.toString().getBytes("UTF-8"))
                     outs.flush()
-                    if (grid[x][y] == 0){
+                    if (grid[x][y] == 0) {
                         zeromine++;
                     }
                 } else {
@@ -85,21 +87,45 @@ class MainTest extends Specification {
 
             } else {
                 //回答
+                actual = valid(str, grid)
                 //todo: 答え合わせ
                 //全体的な失敗率やコスト改善率の平均、分散などの統計値が知りたい
                 //コスト改善率　= 実際のコスト /全部めくった時のコスト(N^2)
-                print cost +"," + zeromine/totalmine + "," + cost/(n * n)
+                print result.name + "," + (n * n) + "," + m + "," + grid.collect { it -> it.sum() }.sum() + "," + cost + "," + zeromine + "," + totalmine
                 println()
                 break;
             }
         }
 
         then:
-        0 == 0
+        actual
         thread.join()
 
         where:
-        inFile<< getTxtFilesFromFolder("./src/test/resources/in/")
+        inFile << getTxtFilesFromFolder("./src/test/resources/in/")
+    }
+
+    //answerがgridと一致しているか判定する
+    static boolean valid(String answer, int[][] grid) {
+        def tokens = answer.split(" ")
+        def size = tokens[1].toInteger()
+        def result = true
+
+        def gridsize = 0
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] > 0) {
+                    gridsize++
+                }
+            }
+        }
+        result &= (gridsize == size)
+        for (i in 0..<size) {
+            def x = tokens[2 * i + 2].toInteger()
+            def y = tokens[2 * i + 1 + 2].toInteger()
+            result &= (grid[x][y] > 0)
+        }
+        return result
     }
 
     // 指定されたフォルダから.txtファイル一覧を取得するヘルパーメソッド
@@ -109,6 +135,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path // *.path で File オブジェクトからパスのリストを取得
+        })*.path.sort() // *.path で File オブジェクトからパスのリストを取得
     }
 }
