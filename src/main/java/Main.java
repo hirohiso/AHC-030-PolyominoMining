@@ -14,6 +14,8 @@ public class Main {
     private static void solve(PrintWriter pw, FastScanner fs) {
         //==================
 
+        //todo:全てが１択になったら、全部採掘しなくても回答する
+        //todo: 0017はなんかバグがあるっぽい
         //初期構築フェーズ
 
         //初期値
@@ -55,22 +57,27 @@ public class Main {
                 counter--;
                 result.set(pair.a, pair.b, v);
                 cnt += v;
-                if( v == 0){
+                //油田を全部見つけたら終了
+                if (cnt >= max) {
+                    break LOOP;
+                }
+                if (v == 0) {
                     macroGuesser.setNoOil(pair.a, pair.b);
                     //最初は積極的に更新しつつ、最後の方はあまり更新しないようにする
-                    if( (double)max /(N * N) > rand.nextDouble()){
+                    if ((double) max / (N * N) > rand.nextDouble()) {
                         temp++;
                         macroGuesser.recal();
                         break;
                     }
-                }else {
+                } else {
                     macroGuesser.setOil(pair.a, pair.b);
+                    //上とは逆に油田を見つけたら積極的に確率を変えていきたい
+                    if ((double) max / (N * N) < rand.nextDouble()) {
+                        temp++;
+                        macroGuesser.recal();
+                        break;
+                    }
                 }
-                //油田を全部見つけたら終了
-                if( cnt >= max){
-                    break LOOP;
-                }
-
             }
         }
         //System.out.println(temp);
@@ -192,13 +199,13 @@ public class Main {
             }
         }
 
-        public void recal(){
+        public void recal() {
             var x = table.length;
             var y = table[0].length;
 
             //todo: 何件生成するか
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
-            for (int i = 0; i < 500; i++) {
+            for (int i = 0; i < 700; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
                 genes.add(new OilV(temp, v));
@@ -206,12 +213,13 @@ public class Main {
             //上位10件を使って、それっぽい期待値を作成する
             //todo: 上位何件利用するか
             var select = new LinkedList<OilV>();
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 15; i++) {
                 select.add(genes.poll());
             }
             var max = select.getLast().value;
             var simu = new int[x][y];
             var sum = 0;
+
             for (OilV v : select) {
                 var oil = v.sets.actual;
                 var w = (max + 1) / (v.value + 1);
@@ -240,7 +248,7 @@ public class Main {
                     var hamix = Math.max(0, (i + 1) * dx - x);
                     var hamiy = Math.max(0, (j + 1) * dy - y);
                     var b = basetable[(i + 1) * dx - hamix - 1][(j + 1) * dy - 1 - hamiy];
-                    var t = set.count(i * dx, j * dy, (i + 1) * dx - hamix - 1, (j + 1) * dy - 1 - hamiy);
+                    var t = set.count(i * dx - hamix, j * dy - hamiy, (i + 1) * dx - hamix - 1, (j + 1) * dy - 1 - hamiy);
                     result += (b - t) * (b - t);
                 }
             }
@@ -256,9 +264,9 @@ public class Main {
             return new SetOfOilOffset(result, this.table.length);
         }
 
-        public void setNoOil(int i, int j){
-            for (Generator generator : generators){
-                generator.setImpossibeOffset(i,j);
+        public void setNoOil(int i, int j) {
+            for (Generator generator : generators) {
+                generator.setImpossibeOffset(i, j);
             }
         }
 
@@ -306,8 +314,8 @@ public class Main {
         }
 
         public void setOil(int i, int j) {
-            for (Generator generator : generators){
-                generator.setWeighting(i,j);
+            for (Generator generator : generators) {
+                generator.setWeighting(i, j);
             }
         }
     }
@@ -382,6 +390,16 @@ public class Main {
             }
         }
 
+        public int countProb() {
+            var cnt = 0;
+            for (int i = 0; i < flg.length; i++) {
+                for (int j = 0; j < flg[0].length; j++) {
+                    cnt += flg[i][j] ? 1 : 0;
+                }
+            }
+            return cnt;
+        }
+
         public OilOffset generate(Random random) {
             update();
             var d = random.nextDouble();
@@ -425,7 +443,7 @@ public class Main {
                 var x = i - p.a;
                 var y = j - p.b;
                 if (0 <= x && x < flg.length && 0 <= y && y < flg[0].length) {
-                    weighting[x][y] += 10;
+                    weighting[x][y] += 100;
                 }
             }
         }
@@ -439,9 +457,9 @@ public class Main {
             }
             for (int i = 0; i < table.length; i++) {
                 for (int j = 0; j < table[0].length; j++) {
-                    if(flg[i][j]){
-                        table[i][j] = weighting[i][j] * 1.0 / (double)cnt;
-                    }else {
+                    if (flg[i][j]) {
+                        table[i][j] = weighting[i][j] * 1.0 / (double) cnt;
+                    } else {
                         table[i][j] = 0.0;
                     }
                 }

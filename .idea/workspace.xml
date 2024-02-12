@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン２">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン２.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
@@ -337,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707744444622</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="バージョン２.1">
+      <option name="closed" value="true" />
+      <created>1707745486914</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1707745486914</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,6 +381,7 @@
     <MESSAGE value="正解判定追加" />
     <MESSAGE value="予知した油田の形を表すクラスを作成" />
     <MESSAGE value="バージョン２" />
-    <option name="LAST_COMMIT_MESSAGE" value="バージョン２" />
+    <MESSAGE value="バージョン２.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="バージョン２.1" />
   </component>
 </project>
