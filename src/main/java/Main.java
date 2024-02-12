@@ -46,6 +46,7 @@ public class Main {
         var cnt = 0;
         var stack = new LinkedList<Pair>();
         var counter = 2 * N * N;
+        var temp = 0;
         LOOP:
         while (counter > 0) {
             var list = macroGuesser.highPoint(max, result);
@@ -57,8 +58,11 @@ public class Main {
                 if( v == 0){
                     macroGuesser.setNoOil(pair.a, pair.b);
                     //最初は積極的に更新しつつ、最後の方はあまり更新しないようにする
-                    macroGuesser.recal();
-                    break;
+                    if( (double)max /(N * N) > rand.nextDouble()){
+                        temp++;
+                        macroGuesser.recal();
+                        break;
+                    }
                 }else {
                     macroGuesser.setOil(pair.a, pair.b);
                 }
@@ -69,6 +73,7 @@ public class Main {
 
             }
         }
+        //System.out.println(temp);
         //回答フェーズ
         var list = result.resultList();
         connector.answer(list);
@@ -193,7 +198,7 @@ public class Main {
 
             //todo: 何件生成するか
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < 500; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
                 genes.add(new OilV(temp, v));
@@ -209,9 +214,9 @@ public class Main {
             var sum = 0;
             for (OilV v : select) {
                 var oil = v.sets.actual;
+                var w = (max + 1) / (v.value + 1);
                 for (int i = 0; i < oil.length; i++) {
                     for (int j = 0; j < oil[0].length; j++) {
-                        var w = max / (v.value + 1);
                         simu[i][j] += oil[i][j] * w;
                         sum += oil[i][j] * w;
                     }
