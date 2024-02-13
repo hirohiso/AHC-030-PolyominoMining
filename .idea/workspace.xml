@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン２.2">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン2.3&#10;&#10;コスト&#10;29073.310340545977&#10;3秒越え">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707782053419</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="バージョン2.3&#10;&#10;コスト&#10;29073.310340545977&#10;3秒越え">
+      <option name="closed" value="true" />
+      <created>1707784015823</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1707784015823</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,6 +398,7 @@
     <MESSAGE value="バージョン２" />
     <MESSAGE value="バージョン２.1" />
     <MESSAGE value="バージョン２.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="バージョン２.2" />
+    <MESSAGE value="バージョン2.3&#10;&#10;コスト&#10;29073.310340545977&#10;3秒越え" />
+    <option name="LAST_COMMIT_MESSAGE" value="バージョン2.3&#10;&#10;コスト&#10;29073.310340545977&#10;3秒越え" />
   </component>
 </project>

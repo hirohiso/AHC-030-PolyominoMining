@@ -51,14 +51,17 @@ public class Main {
         var temp = 0;
         LOOP:
         while (counter > 0) {
+            if (counter != 2 * N * N) {
+                macroGuesser.recal();
+            }
             var maybeans = macroGuesser.pollMaybeAnswer();
-            if(maybeans != null){
+            if (maybeans != null) {
                 //System.out.println("hasAnswer");
-                if(connector.answer(maybeans)){
+                if (connector.answer(maybeans)) {
                     return;
                 }
             }
-            var list = macroGuesser.highPoint(max, result);
+            var list = macroGuesser.highPoint(max , result);
             for (Pair pair : list) {
                 var v = connector.mine(pair);
                 counter--;
@@ -71,20 +74,14 @@ public class Main {
                 if (v == 0) {
                     macroGuesser.setNoOil(pair.a, pair.b);
                     //最初は積極的に更新しつつ、最後の方はあまり更新しないようにする
-                    if ((double) max / (N * N) > rand.nextDouble()) {
-                        temp++;
-                        macroGuesser.recal();
-                        break;
-                    }
+                    break;
                 } else {
                     macroGuesser.setOil(pair.a, pair.b);
                     //上とは逆に油田を見つけたら積極的に確率を変えていきたい
                     if ((double) max / (N * N) < rand.nextDouble()) {
                         temp++;
-                        macroGuesser.recal();
                         break;
                     }
-
                 }
             }
         }
@@ -106,6 +103,7 @@ public class Main {
         private int[][] baseTable;
 
         private List<Pair> maybeAnswer = null;
+        private final HashSet<String> oldanswers = new HashSet<>();
 
         public MacroGuesser(int n, LinkedList<OilFieldSet> oilList) {
             this.table = new double[n][n];
@@ -215,29 +213,34 @@ public class Main {
 
             //todo: 何件生成するか
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
+            updateGenerators();
             for (int i = 0; i < 1000; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
+                if(this.oldanswers.contains(temp.hash)){
+                    continue;
+                }
+
                 genes.add(new OilV(temp, v));
             }
-            //上位10件を使って、それっぽい期待値を作成する
+            //上位10件を使って、それっぽい期待値を作成する.
+            //ハッシュが同じやつは同じものとみなす
             //todo: 上位何件利用するか
-            var select = new LinkedList<OilV>();
-            for (int i = 0; i < 10; i++) {
+            //todo: 同じものはまとめる。何個も同じものが生成された場合は、より重視する
+            //なのでTreeMap使った方が良いかもしれない
+            var select = new TreeSet<OilV>(Comparator.<OilV>comparingLong(o -> o.value).thenComparing(o -> o.sets.hash));
+            for (int i = 0; i < 50; i++) {
+                var oil = genes.poll();
                 select.add(genes.poll());
             }
-            var max = select.getLast().value;
+            var max = select.last().value;
             var simu = new int[x][y];
             var sum = 0;
 
             {
-                //上位10件が大体全部同じなら一番良いのを答えっぽい感じにする
-                var set = new HashSet<Long>();
-                for (OilV oil : select) {
-                    set.add(oil.value);
-                }
-                if (set.size() <= 2) {
-                    var grid = select.getFirst().sets.actual;
+                //誤差が10以内なら答えてみる
+                if (select.first().value <= 10) {
+                    var grid = select.first().sets.actual;
                     var list = new ArrayList<Pair>();
                     for (int i = 0; i < grid.length; i++) {
                         for (int j = 0; j < grid[0].length; j++) {
@@ -247,6 +250,7 @@ public class Main {
                         }
                     }
                     this.maybeAnswer = list;
+                    this.oldanswers.add(select.first().sets.hash);
                 }
             }
 
@@ -267,10 +271,20 @@ public class Main {
             }
         }
 
-        private List<Pair> pollMaybeAnswer(){
+        private List<Pair> pollMaybeAnswer() {
             var result = this.maybeAnswer;
             this.maybeAnswer = null;
             return result;
+        }
+
+        public void dumpGenerator() {
+            for (Generator generator : generators) {
+                System.out.println("==============");
+                System.out.println(generator.oilFieldSet.size);
+                for (int i = 0; i < generator.flg.length; i++) {
+                    System.out.println(Arrays.toString(generator.flg[i]));
+                }
+            }
         }
 
         private long calgosa(int[][] basetable, int dx, int dy, SetOfOilOffset set) {
@@ -298,6 +312,13 @@ public class Main {
                 result[i] = this.generators[i].generate(random);
             }
             return new SetOfOilOffset(result, this.table.length);
+        }
+
+        private void updateGenerators() {
+            var result = new OilOffset[this.generators.length];
+            for (int i = 0; i < this.generators.length; i++) {
+                this.generators[i].update();
+            }
         }
 
         public void setNoOil(int i, int j) {
@@ -338,7 +359,8 @@ public class Main {
             var list = new LinkedList<Pair>();
             var cnt = 0;
             for (int i = 0; i < array.length; i++) {
-                if (result.isNotMined(array[i].a, array[i].b)) {
+                //todo:あまりにも確度が低いやつは返さない。
+                if (result.isNotMined(array[i].a, array[i].b) && table[array[i].a][array[i].b] > 0) {
                     list.add(array[i]);
                     cnt++;
                     if (cnt == n) {
@@ -365,10 +387,15 @@ public class Main {
         private final int[][] actual;
         private final int[][] acc;
 
+        private String hash = "";
+
         public SetOfOilOffset(OilOffset[] oilOffsets, int n) {
             this.oilOffsets = oilOffsets;
             this.actual = new int[n][n];
             this.acc = new int[n + 1][n + 1];
+            for (OilOffset offset :oilOffsets){
+                hash += "[" + offset.offsetX + ":" + offset.offsetY + "]";
+            }
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     for (OilOffset offset : oilOffsets) {
@@ -437,8 +464,6 @@ public class Main {
         }
 
         public OilOffset generate(Random random) {
-            //todo:何回もupdateしないようにする
-            update();
             var d = random.nextDouble();
             var sum = 0.0d;
             var offsetX = 0;
