@@ -21,15 +21,19 @@ public class Main {
         //初期値
         var N = fs.ni();
         var M = fs.ni();
-        var e = fs.n();
+        var e = Double.parseDouble(fs.n());
         var rand = new Random(0);
 
         var connector = new InteractiveConnector(pw, fs);
 
         var oilList = new LinkedList<OilFieldSet>();
         var max = 0;
+        var minsize = Integer.MAX_VALUE;
         for (int i = 0; i < M; i++) {
             var d = fs.ni();
+            if (d < minsize) {
+                minsize = d;
+            }
             var list = new LinkedList<Pair>();
             for (int j = 0; j < d; j++) {
                 var x = fs.ni();
@@ -43,7 +47,7 @@ public class Main {
         var result = new MiningResult(N);
 
         //推測フェーズ
-        var macroGuesser = new MacroGuesser(N, oilList);
+        var macroGuesser = new MacroGuesser(N, oilList, e);
         macroGuesser.setup(connector);
         var cnt = 0;
         var stack = new LinkedList<Pair>();
@@ -54,14 +58,14 @@ public class Main {
             if (counter != 2 * N * N) {
                 macroGuesser.recal();
             }
+            //確度の高い答えっぽいものを見つけたら博打回答
             var maybeans = macroGuesser.pollMaybeAnswer();
             if (maybeans != null) {
-                //System.out.println("hasAnswer");
                 if (connector.answer(maybeans)) {
                     return;
                 }
             }
-            var list = macroGuesser.highPoint(max , result);
+            var list = macroGuesser.highPoint(max, result);
             for (Pair pair : list) {
                 var v = connector.mine(pair);
                 counter--;
@@ -77,8 +81,13 @@ public class Main {
                     break;
                 } else {
                     macroGuesser.setOil(pair.a, pair.b);
-                    //上とは逆に油田を見つけたら積極的に確率を変えていきたい
+                    //上とは逆に油田を見つけたら積極的に確率を変えていきたい・・・・
                     if ((double) max / (N * N) < rand.nextDouble()) {
+                        temp++;
+                        break;
+                    }
+                    //残りわずかになったら積極更新
+                    if (max - cnt < minsize) {
                         temp++;
                         break;
                     }
@@ -102,12 +111,15 @@ public class Main {
         private int dy = 0;
         private int[][] baseTable;
 
+        private final double errorRatio;
+
         private List<Pair> maybeAnswer = null;
         private final HashSet<String> oldanswers = new HashSet<>();
 
-        public MacroGuesser(int n, LinkedList<OilFieldSet> oilList) {
+        public MacroGuesser(int n, LinkedList<OilFieldSet> oilList, double errorRatio) {
             this.table = new double[n][n];
             this.oilList = oilList;
+            this.errorRatio = errorRatio;
             int size = oilList.stream().mapToInt(set -> set.size()).sum();
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -217,7 +229,7 @@ public class Main {
             for (int i = 0; i < 1000; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
-                if(this.oldanswers.contains(temp.hash)){
+                if (this.oldanswers.contains(temp.hash)) {
                     continue;
                 }
 
@@ -238,8 +250,8 @@ public class Main {
             var sum = 0;
 
             {
-                //誤差が10以内なら答えてみる
-                if (select.first().value <= 10) {
+                //誤差が許容範囲なら答えてみる
+                if (select.first().value <= errorRatio * table.length * table[0].length) {
                     var grid = select.first().sets.actual;
                     var list = new ArrayList<Pair>();
                     for (int i = 0; i < grid.length; i++) {
@@ -393,13 +405,17 @@ public class Main {
             this.oilOffsets = oilOffsets;
             this.actual = new int[n][n];
             this.acc = new int[n + 1][n + 1];
-            for (OilOffset offset :oilOffsets){
+            for (OilOffset offset : oilOffsets) {
                 hash += "[" + offset.offsetX + ":" + offset.offsetY + "]";
             }
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    for (OilOffset offset : oilOffsets) {
-                        actual[i][j] += offset.isOil(i, j) ? 1 : 0;
+            for (OilOffset offset : oilOffsets) {
+                //todo: ここの最適化
+                var xoff = offset.offsetX;
+                var yoff = offset.offsetY;
+                var oilgird = offset.oilFieldSet.oil;
+                for (int i = 0; i < oilgird.length; i++) {
+                    for (int j = 0; j < oilgird[0].length; j++) {
+                        actual[i + xoff][j + yoff] += oilgird[i][j] ? 1 : 0;
                     }
                 }
             }
