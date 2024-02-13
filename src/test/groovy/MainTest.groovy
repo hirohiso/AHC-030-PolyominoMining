@@ -88,12 +88,20 @@ class MainTest extends Specification {
             } else {
                 //回答
                 actual = valid(str, grid)
-                //todo: 答え合わせ
-                //全体的な失敗率やコスト改善率の平均、分散などの統計値が知りたい
-                //コスト改善率　= 実際のコスト /全部めくった時のコスト(N^2)
-                print result.name + "," + (n * n) + "," + m + "," + grid.collect { it -> it.sum() }.sum() + "," + cost + "," + zeromine + "," + totalmine
-                println()
-                break;
+                if (actual) {
+                    outs.write("1\n".getBytes("UTF-8"))
+                    outs.flush()
+                    //todo: 答え合わせ
+                    //全体的な失敗率やコスト改善率の平均、分散などの統計値が知りたい
+                    //コスト改善率　= 実際のコスト /全部めくった時のコスト(N^2)
+                    print result.name + "," + (n * n) + "," + m + "," + grid.collect { it -> it.sum() }.sum() + "," + cost + "," + zeromine + "," + totalmine
+                    println()
+                    break;
+                } else {
+                    outs.write("0\n".getBytes("UTF-8"))
+                    outs.flush()
+                    cost += 1
+                }
             }
         }
 
@@ -135,6 +143,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path.sort()[17..17] //todo:一旦絞る
+        })*.path.sort()//[0..20] //todo:一旦絞る
     }
 }

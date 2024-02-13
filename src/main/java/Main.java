@@ -51,6 +51,13 @@ public class Main {
         var temp = 0;
         LOOP:
         while (counter > 0) {
+            var maybeans = macroGuesser.pollMaybeAnswer();
+            if(maybeans != null){
+                //System.out.println("hasAnswer");
+                if(connector.answer(maybeans)){
+                    return;
+                }
+            }
             var list = macroGuesser.highPoint(max, result);
             for (Pair pair : list) {
                 var v = connector.mine(pair);
@@ -77,6 +84,7 @@ public class Main {
                         macroGuesser.recal();
                         break;
                     }
+
                 }
             }
         }
@@ -96,6 +104,8 @@ public class Main {
         private int dx = 0;
         private int dy = 0;
         private int[][] baseTable;
+
+        private List<Pair> maybeAnswer = null;
 
         public MacroGuesser(int n, LinkedList<OilFieldSet> oilList) {
             this.table = new double[n][n];
@@ -205,7 +215,7 @@ public class Main {
 
             //todo: 何件生成するか
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
-            for (int i = 0; i < 700; i++) {
+            for (int i = 0; i < 1000; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
                 genes.add(new OilV(temp, v));
@@ -213,12 +223,32 @@ public class Main {
             //上位10件を使って、それっぽい期待値を作成する
             //todo: 上位何件利用するか
             var select = new LinkedList<OilV>();
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 10; i++) {
                 select.add(genes.poll());
             }
             var max = select.getLast().value;
             var simu = new int[x][y];
             var sum = 0;
+
+            {
+                //上位10件が大体全部同じなら一番良いのを答えっぽい感じにする
+                var set = new HashSet<Long>();
+                for (OilV oil : select) {
+                    set.add(oil.value);
+                }
+                if (set.size() <= 2) {
+                    var grid = select.getFirst().sets.actual;
+                    var list = new ArrayList<Pair>();
+                    for (int i = 0; i < grid.length; i++) {
+                        for (int j = 0; j < grid[0].length; j++) {
+                            if (grid[i][j] != 0) {
+                                list.add(new Pair(i, j));
+                            }
+                        }
+                    }
+                    this.maybeAnswer = list;
+                }
+            }
 
             for (OilV v : select) {
                 var oil = v.sets.actual;
@@ -235,6 +265,12 @@ public class Main {
                     table[i][j] = (double) simu[i][j] / sum;
                 }
             }
+        }
+
+        private List<Pair> pollMaybeAnswer(){
+            var result = this.maybeAnswer;
+            this.maybeAnswer = null;
+            return result;
         }
 
         private long calgosa(int[][] basetable, int dx, int dy, SetOfOilOffset set) {
@@ -401,11 +437,13 @@ public class Main {
         }
 
         public OilOffset generate(Random random) {
+            //todo:何回もupdateしないようにする
             update();
             var d = random.nextDouble();
             var sum = 0.0d;
             var offsetX = 0;
             var offsetY = 0;
+            //todo:二分探索で高速化する
             LOOP:
             for (int i = 0; i < table.length; i++) {
                 for (int j = 0; j < table[0].length; j++) {
@@ -591,12 +629,14 @@ public class Main {
 
         //回答する
 
-        public void answer(List<Pair> list) {
+        public boolean answer(List<Pair> list) {
             pw.print("a " + list.size() + " ");
             for (Pair p : list) {
                 pw.print(p.a + " " + p.b + " ");
             }
             pw.println();
+            pw.flush();
+            return fs.ni() == 1;
         }
 
 
