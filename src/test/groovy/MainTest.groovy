@@ -143,6 +143,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path.sort()[42..42]//[19..19] //todo:一旦絞る
+        })*.path.sort()//[84..84]//[19..19] //todo:一旦絞る
     }
 }

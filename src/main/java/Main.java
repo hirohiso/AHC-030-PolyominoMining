@@ -51,68 +51,47 @@ public class Main {
         var greedyMode = false;
         LOOP:
         while (connector.counter < 2 * N * N - 1) {
-            if (oilList.size() >= 15 && max - cnt <= 2 * minsize) {
-                if (greedyMode || searchOil(result, macroGuesser, N) <= oilList.size() + 3) {
-                    greedyMode = true;
-                    var table = new int[N][N];
-                    //周りを探索したほうが効率良さそうなのでそっちのモードに移行
-                    //少なくとも油田をおける場所（配置可能）
-                    //すでに探索をし終えており、油田が発見されている
-                    for (Generator generator : macroGuesser.generators) {
-                        var isOK = generator.flg;
-                        var wa = generator.weighting;
-                        for (int i = 0; i < wa.length; i++) {
-                            for (int j = 0; j < wa[0].length; j++) {
-                                if (!isOK[i][j]) {
-                                    continue;
-                                }
-                                for (Pair p : generator.oilFieldSet.list) {
-                                    if (result.isNotMined(i + p.a, j + p.b)) {
-                                        if (i + p.a < generator.flg.length && j + p.b < generator.flg[0].length) {
-                                            if (wa[i + p.a][j + p.b] > 1) {
-                                                //未探索のところだけ印をつける
-                                                table[i + p.a][j + p.b] += 1;
-                                            }
-                                        }
+            if (oilList.size() >= 15 && max - cnt <= 2 * minsize || greedyMode) {
+                greedyMode = false;
+                var listlist = searchOil(result, macroGuesser, N);
+                if ( listlist.size() <= oilList.size() + 3) {
+                    var loopflg = true;
+                    while (loopflg) {
+                        loopflg = false;
+                        for (var list : listlist) {
+                            if (list.size() == 0) {
+                                loopflg |= false;
+                                continue;
+                            }else{
+                                loopflg |= true;
+                            }
+                            var pair = list.pollFirst();
+                            //掘る直前にありえないすべての油田で置けないパターンになってないか確認
+                            //どれか一つでもtrueの油田があれば良い
+                            if (result.isMined(pair.a, pair.b)) {
+                                continue;
+                            }
+                            var v = connector.mine(pair);
+                            result.set(pair.a, pair.b, v);
+                            cnt += v;
+                            //油田を全部見つけたら終了
+                            if (cnt >= max) {
+                                break LOOP;
+                            }
+                            if (v == 0) {
+                                macroGuesser.setNoOil(pair.a, pair.b);
+                            } else {
+                                macroGuesser.setOil(pair.a, pair.b);
+                                //周りに未開拓のポイントがあったら探索に追加
+                                var dif = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+                                for (int[] d : dif) {
+                                    var x = pair.a + d[0];
+                                    var y = pair.b + d[1];
+                                    if (result.isRange(x, y) && result.isNotMined(x, y)) {
+                                        list.addLast(new Pair(x, y));
                                     }
                                 }
                             }
-                        }
-                    }
-                    var stack = new PriorityQueue<Triple>(Comparator.<Triple>comparingLong(t -> t.c).reversed());
-                    for (int i = 0; i < N; i++) {
-                        for (int j = 0; j < N; j++) {
-                            if (table[i][j] > 0) {
-                                stack.add(new Triple(i, j, table[i][j]));
-                            }
-                        }
-                    }
-                    LOOP2:
-                    for (var tri : stack) {
-                        //終盤
-                        var pair = new Pair(tri.a, tri.b);
-                        //掘る直前にありえないすべての油田で置けないパターンになってないか確認
-                        //どれか一つでもtrueの油田があれば良い
-                        var noskip = false;
-                        for (Generator generator : macroGuesser.generators) {
-                            if (pair.a < generator.flg.length && pair.b < generator.flg[0].length) {
-                                noskip |= generator.flg[pair.a][pair.b];
-                            }
-                        }
-                        if (!noskip) {
-                            continue LOOP2;
-                        }
-                        var v = connector.mine(pair);
-                        result.set(pair.a, pair.b, v);
-                        cnt += v;
-                        //油田を全部見つけたら終了
-                        if (cnt >= max) {
-                            break LOOP;
-                        }
-                        if (v == 0) {
-                            macroGuesser.setNoOil(pair.a, pair.b);
-                        } else {
-                            macroGuesser.setOil(pair.a, pair.b);
                         }
                     }
                 }
@@ -131,6 +110,10 @@ public class Main {
                 }
             }
             var list = macroGuesser.highPoint(max, result);
+            if(list.size() == 0){
+                //幅優先探索実行
+                greedyMode = true;
+            }
             for (Pair pair : list) {
                 if (rand.nextDouble() < macroGuesser.ratio(pair.a, pair.b) * (1.0 - (double) cnt / max) && connector.counter < N * N) {
                     //余裕があるうちは
@@ -160,10 +143,11 @@ public class Main {
     }
 
     //深さ優先探索をして油田の個数を見つけたか確認する
-    private static int searchOil(MiningResult result, MacroGuesser macroGuesser, int islandSize) {
+    private static LinkedList<LinkedList<Pair>> searchOil(MiningResult result, MacroGuesser macroGuesser, int islandSize) {
         var dif = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
         //発見している油田の数
         var islandCount = 0;
+        var list = new LinkedList<LinkedList<Pair>>();
         var visited = new boolean[islandSize][islandSize];
         for (int i = 0; i < islandSize; i++) {
             for (int j = 0; j < islandSize; j++) {
@@ -171,7 +155,7 @@ public class Main {
                     visited[i][j] = true;
                     continue;
                 }
-                if(result.isNoOilField(i,j)){
+                if (result.isNoOilField(i, j)) {
                     visited[i][j] = true;
                     continue;
                 }
@@ -197,16 +181,16 @@ public class Main {
                             visited[x][y] = true;
                             stack.addLast(new Pair(x, y));
                         }
-                        if(result.isRange(x, y) && result.isNotMined(x, y) && !visited[x][y]){
-                            mitansakuset.add(new Pair(x,y));
+                        if (result.isRange(x, y) && result.isNotMined(x, y)) {
+                            mitansakuset.add(new Pair(x, y));
                         }
                     }
                 }
-                System.out.println(mitansakuset);
+                list.add(mitansakuset);
                 islandCount += size;
             }
         }
-        return islandCount;
+        return list;
     }
 
 
@@ -236,7 +220,7 @@ public class Main {
         private int[][] baseTable;
 
         //島のサイズの何割を良い解とするか
-        private static double V_THRETHOLD_RATIO = 0.8;
+        private static double V_THRETHOLD_RATIO = 0.85;
         //許容違反数
         private static int ALLOWED_VIOLATION = 2;
 
@@ -252,10 +236,11 @@ public class Main {
 
         private void genNumCal(int n, int m, double error) {
             //mが10以上なら、生成数を落とす
-            GENERATE_NUMBER = (m < 10 ? 1200 : (m < 15 ? 800 : 600));
+            GENERATE_NUMBER = (m < 8 ? 1500 : (m < 16 ? 1000 : 800));
             //エラー率に応じて閾値を調整する
-            V_THRETHOLD_RATIO = 1 - error;
-            ALLOWED_VIOLATION = error < 0.05 ? 1 : (error < 0.1 ? 2 : (error < 0.15 ? 3 : 4));
+            //V_THRETHOLD_RATIO = 1 - error;
+            ALLOWED_VIOLATION = error < 0.07 ? 1 : (error < 0.1 ? 2 : (error < 0.15 ? 3 : 4));
+            V_THRETHOLD_RATIO = (m < 5 ? 0.8 : (m < 10 ? 0.9 : 1));
             //System.out.println(GENERATE_NUMBER);
         }
 
