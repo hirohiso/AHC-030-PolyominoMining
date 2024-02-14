@@ -8,106 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0001.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0001.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0002.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0002.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0003.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0003.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0004.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0004.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0005.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0005.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0006.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0006.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0007.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0007.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0008.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0008.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0009.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0009.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0010.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0010.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0011.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0011.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0012.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0012.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0013.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0013.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0014.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0014.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0015.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0015.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0016.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0016.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0017.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0017.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0018.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0018.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0019.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0019.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0020.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0020.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0021.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0021.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0022.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0022.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0023.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0023.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0024.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0024.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0025.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0025.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0026.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0026.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0027.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0027.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0028.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0028.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0029.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0029.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0030.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0030.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0031.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0031.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0032.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0032.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0033.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0033.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0034.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0034.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0035.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0035.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0036.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0036.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0037.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0037.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0038.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0038.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0039.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0039.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0040.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0040.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0041.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0041.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0042.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0042.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0043.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0043.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0044.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0044.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0045.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0045.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0046.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0046.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0047.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0047.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0048.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0048.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0049.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0049.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0050.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0050.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0051.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0051.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0052.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0052.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0053.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0053.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0054.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0054.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0055.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0055.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0056.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0056.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0057.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0057.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0058.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0058.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0059.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0059.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0060.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0060.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0061.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0061.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0062.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0062.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0063.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0063.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0064.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0064.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0065.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0065.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0066.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0066.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0067.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0067.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0068.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0068.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0069.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0069.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0070.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0070.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0071.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0071.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0072.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0072.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0073.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0073.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0074.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0074.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0075.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0075.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0076.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0076.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0077.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0077.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0078.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0078.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0079.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0079.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0080.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0080.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0081.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0081.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0082.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0082.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0083.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0083.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0084.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0084.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0085.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0085.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0086.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0086.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0087.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0087.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0088.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0088.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0089.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0089.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0090.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0090.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0091.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0091.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0092.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0092.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0093.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0093.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0094.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0094.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0095.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0095.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0096.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0096.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0097.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0097.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0098.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0098.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0099.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0099.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,30 +75,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.MainTest.test.executor": "Run",
-    "Gradle.PolyominoMining [:Main.main()].executor": "Run",
-    "Gradle.PolyominoMining [test].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "Spock",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Spock": "spock.lang.Specification",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/hironori/IntelliJIDEAProjects/PolyominoMining/src/test/resources/complex/in",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.MainTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PolyominoMining [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PolyominoMining [test].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;Spock&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Spock&quot;: &quot;spock.lang.Specification&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/hironori/IntelliJIDEAProjects/PolyominoMining/src/test/resources/complex/in&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources/complex/in" />
@@ -212,7 +113,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
+  <component name="RunManager" selected="Gradle.MainTest.test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -273,11 +174,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.PolyominoMining [test]" />
+        <item itemvalue="Gradle.PolyominoMining [test]" />
       </list>
     </recent_temporary>
   </component>
