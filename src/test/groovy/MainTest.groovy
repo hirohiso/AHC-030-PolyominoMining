@@ -110,7 +110,7 @@ class MainTest extends Specification {
         thread.join()
 
         where:
-        inFile << getTxtFilesFromFolder("./src/test/resources/in/")
+        inFile << getTxtFilesFromFolder("./src/test/resources/complex/in/")
     }
 
     //answerがgridと一致しているか判定する
@@ -143,6 +143,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path.sort()[0..20] //todo:一旦絞る
+        })*.path.sort()[42..42]//[19..19] //todo:一旦絞る
     }
 }
