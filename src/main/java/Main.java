@@ -49,163 +49,32 @@ public class Main {
         var cnt = 0;
         var flg = false;
         var greedyMode = false;
+
+        //connector.counter < 2 * N * N - 1
+        var tempcount = 200;
         LOOP:
-        while (connector.counter < 2 * N * N - 1) {
-            if (oilList.size() >= 15 && max - cnt <= 2 * minsize || greedyMode) {
-                greedyMode = false;
-                var listlist = searchOil(result, macroGuesser, N);
-                if ( listlist.size() <= oilList.size() + 3) {
-                    var loopflg = true;
-                    while (loopflg) {
-                        loopflg = false;
-                        for (var list : listlist) {
-                            if (list.size() == 0) {
-                                loopflg |= false;
-                                continue;
-                            }else{
-                                loopflg |= true;
-                            }
-                            var pair = list.pollFirst();
-                            //掘る直前にありえないすべての油田で置けないパターンになってないか確認
-                            //どれか一つでもtrueの油田があれば良い
-                            if (result.isMined(pair.a, pair.b)) {
-                                continue;
-                            }
-                            var v = connector.mine(pair);
-                            result.set(pair.a, pair.b, v);
-                            cnt += v;
-                            //油田を全部見つけたら終了
-                            if (cnt >= max) {
-                                break LOOP;
-                            }
-                            if (v == 0) {
-                                macroGuesser.setNoOil(pair.a, pair.b);
-                            } else {
-                                macroGuesser.setOil(pair.a, pair.b);
-                                //周りに未開拓のポイントがあったら探索に追加
-                                var dif = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-                                for (int[] d : dif) {
-                                    var x = pair.a + d[0];
-                                    var y = pair.b + d[1];
-                                    if (result.isRange(x, y) && result.isNotMined(x, y)) {
-                                        list.addLast(new Pair(x, y));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (flg) {
-                //初回以外は実施
-                macroGuesser.recal(result);
-            } else {
-                flg = true;
-            }
-            //確度の高い答えっぽいものを見つけたら博打回答(打ちすぎないようにする)
-            var maybeans = macroGuesser.pollMaybeAnswer();
-            if (maybeans != null && connector.counter < N * N) {
-                if (connector.answer(maybeans)) {
+        while (tempcount-- > 0) {
+            var list = macroGuesser.pollMaybeAnswer();
+            if (list != null) {
+                var v = connector.answer(list);
+                if (v) {
                     return;
                 }
             }
-            var list = macroGuesser.highPoint(max, result);
-            if(list.size() == 0){
-                //幅優先探索実行
-                greedyMode = true;
-            }
-            for (Pair pair : list) {
-                if (rand.nextDouble() < macroGuesser.ratio(pair.a, pair.b) * (1.0 - (double) cnt / max) && connector.counter < N * N) {
-                    //余裕があるうちは
-                    //確度が高いほど掘らんくてもわかる的なことを行う
-                    continue;
-                }
-                //終盤
-                var v = connector.mine(pair);
-                result.set(pair.a, pair.b, v);
-                cnt += v;
-                //油田を全部見つけたら終了
-                if (cnt >= max) {
-                    break LOOP;
-                }
-                if (v == 0) {
-                    macroGuesser.setNoOil(pair.a, pair.b);
-                    break;
+
+            var minepoint = macroGuesser.getPoint();
+            if (minepoint != null) {
+                var v = connector.mine(minepoint);
+                result.set(minepoint.a, minepoint.b, v);
+                if (v != 0) {
+                    macroGuesser.setOil(minepoint.a, minepoint.b);
                 } else {
-                    macroGuesser.setOil(pair.a, pair.b);
+                    macroGuesser.setNoOil(minepoint.a, minepoint.b);
                 }
             }
+            macroGuesser.recal(result, connector);
         }
-        //回答フェーズ
-        var list = result.resultList();
-        connector.answer(list);
         /**/
-    }
-
-    //深さ優先探索をして油田の個数を見つけたか確認する
-    private static LinkedList<LinkedList<Pair>> searchOil(MiningResult result, MacroGuesser macroGuesser, int islandSize) {
-        var dif = new int[][]{{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-        //発見している油田の数
-        var islandCount = 0;
-        var list = new LinkedList<LinkedList<Pair>>();
-        var visited = new boolean[islandSize][islandSize];
-        for (int i = 0; i < islandSize; i++) {
-            for (int j = 0; j < islandSize; j++) {
-                if (!result.isMined(i, j)) {
-                    visited[i][j] = true;
-                    continue;
-                }
-                if (result.isNoOilField(i, j)) {
-                    visited[i][j] = true;
-                    continue;
-                }
-                if (visited[i][j]) {
-                    continue;
-                }
-                var stack = new LinkedList<Pair>();
-                stack.addLast(new Pair(i, j));
-                //周りの未探索領域をスタックに入れる
-                Pair target;
-                var size = 0;
-                var mitansakuset = new LinkedList<Pair>();
-                while ((target = stack.pollFirst()) != null) {
-                    var v = result.get(target.a, target.b);
-                    size = Math.max(size, v);
-                    for (int[] d : dif) {
-                        var x = target.a + d[0];
-                        var y = target.b + d[1];
-                        if (result.isRange(x, y) && result.isMined(x, y) && !visited[x][y]) {
-                            if (result.isNoOilField(x, y)) {
-                                continue;
-                            }
-                            visited[x][y] = true;
-                            stack.addLast(new Pair(x, y));
-                        }
-                        if (result.isRange(x, y) && result.isNotMined(x, y)) {
-                            mitansakuset.add(new Pair(x, y));
-                        }
-                    }
-                }
-                list.add(mitansakuset);
-                islandCount += size;
-            }
-        }
-        return list;
-    }
-
-
-    private static void dumpOffsetcount(MacroGuesser macroGuesser) {
-        //todo:実験
-        for (int i = 0; i < macroGuesser.offsetCount.length; i++) {
-            System.out.println("油田:" + i);
-            var pq = new PriorityQueue<Triple>(Comparator.<Triple>comparingLong(t -> t.c).reversed());
-            for (int j = 0; j < macroGuesser.offsetCount[0].length; j++) {
-                for (int k = 0; k < macroGuesser.offsetCount[0].length; k++) {
-                    pq.add(new Triple(j, k, macroGuesser.offsetCount[i][j][k]));
-                }
-            }
-            System.out.println(pq);
-        }
     }
 
     public static class MacroGuesser {
@@ -231,8 +100,18 @@ public class Main {
 
         private final double errorRatio;
 
-        private List<Pair> maybeAnswer = null;
+
         private final HashSet<String> oldanswers = new HashSet<>();
+
+        //------------別解法
+        private final static int MAX_PATTERN = 10;
+        private int oilTotalSize;
+        private List<Pair> maybeAnswer = null;
+
+        private int[][] pattern = null;
+        private LinkedList<SetOfOilOffset> setOfOilOffsets;
+
+        //---------------
 
         private void genNumCal(int n, int m, double error) {
             //mが10以上なら、生成数を落とす
@@ -255,6 +134,7 @@ public class Main {
                     table[i][j] = (double) size / (n * n);
                 }
             }
+            this.oilTotalSize = size;
 
             this.generators = new Generator[oilList.size()];
             for (int i = 0; i < oilList.size(); i++) {
@@ -317,128 +197,127 @@ public class Main {
             }
 
 
-            //1000件ランダムに候補を生成してそれっぽいものを使って初期の確度を決める
+            //数千件ランダムに候補を生成してそれっぽいものを使って初期の確度を決める
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
-            //todo: 初期に何件生成するか
             for (int i = 0; i < 3000; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
                 genes.add(new OilV(temp, v));
             }
-            //上位３０件を使って、それっぽい期待値を作成する
+
+            //上位100件を使う
             var select = new LinkedList<OilV>();
-            //todo: 上位何件利用するか
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 10; i++) {
                 select.add(genes.poll());
             }
-            var simu = new int[x][y];
-            var sum = 0;
-            for (OilV v : select) {
-                var oil = v.sets.actual;
-                for (int i = 0; i < oil.length; i++) {
-                    for (int j = 0; j < oil[0].length; j++) {
-                        simu[i][j] += oil[i][j];
-                        sum += oil[i][j];
+            var genesets = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
+            //実際に占って,良い数字か確認する
+            for (OilV oilV : select) {
+                var list = oilV.oillist();
+                var d = connector.foresee(list);
+                System.out.println(oilV.value + ":" + Math.abs(oilTotalSize - d));
+                genesets.add(new OilV(oilV.sets, Math.abs(oilTotalSize - d)));
+            }
+
+            //上位10件をマッピング
+            var counter = MAX_PATTERN;
+            var pattern = new int[x][y];
+            var kouholist = new LinkedList<SetOfOilOffset>();
+            while (counter > 0 && genesets.size() != 0) {
+                var oilv = genesets.poll();
+                kouholist.add(oilv.sets);
+                if (counter == MAX_PATTERN) {
+                    //現時点で一番良いものを答え扱いとする
+                    this.maybeAnswer = oilv.oillist();
+                }
+                var v = oilv.sets.actual;
+                for (int i = 0; i < v.length; i++) {
+                    for (int j = 0; j < v[0].length; j++) {
+                        if (v[i][j] != 0) {
+                            pattern[i][j]++;
+                        }
+                    }
+                }
+                counter--;
+            }
+            this.setOfOilOffsets = kouholist;
+            for (int i = 0; i < pattern.length; i++) {
+                System.out.println(Arrays.toString(pattern[i]));
+            }
+            this.pattern = pattern;
+        }
+
+        public Pair getPoint() {
+            var size = this.setOfOilOffsets.size() / 2;
+            Pair result = null;
+            for (int i = 0; i < pattern.length; i++) {
+                for (int j = 0; j < pattern[0].length; j++) {
+                    if (pattern[i][j] == size) {
+                        System.out.println(i + ":" + j);
+                        return new Pair(i, j);
                     }
                 }
             }
-            for (int i = 0; i < x; i++) {
-                for (int j = 0; j < y; j++) {
-                    table[i][j] = (double) simu[i][j] / sum;
-                }
-            }
+
+            return null;
         }
 
-        public void recal(MiningResult result) {
+
+        public void recal(MiningResult result, InteractiveConnector connector) {
             var x = table.length;
             var y = table[0].length;
 
-            //todo: 何件生成するか
             var select = new TreeMap<OilV, Long>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
             var queue = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
             updateGenerators();
-            for (int i = 0; i < GENERATE_NUMBER; i++) {
+            for (int i = 0; i < 30; ) {
                 var temp = generate();
-                //resultと矛盾してないか確認
                 var tgrid = temp.actual;
                 var rgrid = result.grid;
-
-                var v = calgosa(baseTable, dx, dy, temp);
-                if (this.oldanswers.contains(temp.hash)) {
-                    //候補に入れない
+                if (validSet(tgrid, rgrid) > 0) {
+                    for (int j = 0; j < temp.oilOffsets.length; j++) {
+                        realtimeUpdate(j,temp.oilOffsets[j],false);
+                    }
                     continue;
+                }else{
+                    for (int j = 0; j < temp.oilOffsets.length; j++) {
+                        realtimeUpdate(j,temp.oilOffsets[j],true);
+                    }
                 }
-                if (validSet(tgrid, rgrid) > ALLOWED_VIOLATION) {
-                    //候補に入れない
-                    queue.add(new OilV(temp, v));
-                    continue;
-                }
-                select.merge(new OilV(temp, v), 1l, Long::sum);
+                var v = connector.foresee(temp.oillist());
+                queue.add(new OilV(temp, Math.abs(oilTotalSize - v)));
+                i++;
             }
 
-            if (select.size() == 0) {
-                //良い解候補がない場合は、一回退避していたやつを召喚
-                for (var oilv : queue) {
-                    select.merge(oilv, 1l, Long::sum);
+
+            //同じことを行う
+
+            //上位10件をマッピング
+            var counter = MAX_PATTERN;
+            var pattern = new int[x][y];
+            var kouholist = new LinkedList<SetOfOilOffset>();
+            while (counter > 0 && queue.size() != 0) {
+                var oilv = queue.poll();
+                kouholist.add(oilv.sets);
+                if (counter == MAX_PATTERN) {
+                    //現時点で一番良いものを答え扱いとする
+                    this.maybeAnswer = oilv.oillist();
                 }
-            }
-            var simu = new int[x][y];
-            var sum = 0;
-            {
-                //行けそうならやってみる誤差が許容範囲なら答えてみる
-                if (validSet(select.firstKey().sets.actual, result.grid) == 0 && select.firstKey().value < x * y) {
-                    var grid = select.firstKey().sets.actual;
-                    var list = new ArrayList<Pair>();
-                    for (int i = 0; i < grid.length; i++) {
-                        for (int j = 0; j < grid[0].length; j++) {
-                            if (grid[i][j] != 0) {
-                                list.add(new Pair(i, j));
-                            }
+                var v = oilv.sets.actual;
+                for (int i = 0; i < v.length; i++) {
+                    for (int j = 0; j < v[0].length; j++) {
+                        if (v[i][j] != 0) {
+                            pattern[i][j]++;
                         }
                     }
-                    this.maybeAnswer = list;
-                    this.oldanswers.add(select.firstKey().sets.hash);
                 }
+                counter--;
             }
-            //todo:
-            /*
-            System.out.println(select);
-             */
-            var count = 0;
-            for (var en : select.entrySet()) {
-                var v = en.getKey();
-                var k = en.getValue();
-
-                var oil = v.sets.actual;
-                for (int i = 0; i < oil.length; i++) {
-                    for (int j = 0; j < oil[0].length; j++) {
-                        simu[i][j] += oil[i][j] * k;
-                        sum += oil[i][j] * k;
-                    }
-                }
-
-                //良い解は選ばれやすくしたい
-                if (count < 5) {
-                    var sets = en.getKey().sets.oilOffsets;
-                    var setidx = 0;
-                    for (OilOffset offset : sets) {
-                        for (int i = -1; i <= 1; i++) {
-                            for (int j = -1; j <= 1; j++) {
-                                if (0 <= i && i < x && 0 <= j && j < y) {
-                                    offsetCount[setidx][offset.offsetX][offset.offsetY] += (3 - (i * i) - (j * j));
-                                }
-                            }
-                        }
-                        setidx++;
-                    }
-                }
-                count++;
+            this.setOfOilOffsets = kouholist;
+            for (int i = 0; i < pattern.length; i++) {
+                System.out.println(Arrays.toString(pattern[i]));
             }
-            for (int i = 0; i < x; i++) {
-                for (int j = 0; j < y; j++) {
-                    table[i][j] = (double) simu[i][j] / sum;
-                }
-            }
+            this.pattern = pattern;
         }
 
         //違反数チェック
@@ -507,83 +386,55 @@ public class Main {
             }
         }
 
-
-        //確度の高い採掘地点を返す
-        public Pair pollMiningPoint() {
-            var i = 0;
-            var j = 0;
-            var prov = 0.0;
-            for (int k = 0; k < table.length; k++) {
-                for (int l = 0; l < table[0].length; l++) {
-                    if (prov < table[k][l]) {
-                        prov = table[k][l];
-                        i = k;
-                        j = l;
-                    }
-                }
-            }
-            return new Pair(i, j);
-        }
-
-        public double highRatio(MiningResult mr) {
-            var result = 0.0;
-            var x = table.length;
-            var y = table[0].length;
-            for (int i = 0; i < x; i++) {
-                for (int j = 0; j < y; j++) {
-                    if (!mr.isNotMined(i, j)) {
-                        continue;
-                    }
-                    if (result < table[i][j]) {
-                        result = table[i][j];
-                    }
-                }
-            }
-            return result;
-        }
-
-        public double ratio(int i, int j) {
-            return table[i][j];
-        }
-
-        //確度の高いベストNを返却する。
-        public List<Pair> highPoint(int n, MiningResult result) {
-            var x = table.length;
-            var y = table[0].length;
-            var array = new Pair[x * y];
-            var total = 0.0;
-            for (int i = 0; i < x; i++) {
-                for (int j = 0; j < y; j++) {
-                    array[i * y + j] = new Pair(i, j);
-                    total += table[i][j];
-                }
-            }
-            Arrays.sort(array, Comparator.<Pair>comparingDouble(p -> table[p.a][p.b]).reversed());
-            var list = new LinkedList<Pair>();
-            var cnt = 0;
-            for (int i = 0; i < array.length; i++) {
-                //確度0は返さない。
-                if (result.isNotMined(array[i].a, array[i].b) && table[array[i].a][array[i].b] > 0) {
-                    list.add(array[i]);
-                    cnt++;
-                    if (cnt == n) {
-                        break;
-                    }
-                } else {
-                }
-            }
-            return list;
-        }
-
         public void setOil(int i, int j) {
-            for (Generator generator : generators) {
-                generator.setWeighting(i, j);
+            //油田ありと回答した候補のオフセット値の確率をあげる
+            var list = this.setOfOilOffsets;
+            for (SetOfOilOffset setOfOilOffset : list) {
+                var table = setOfOilOffset.actual;
+                if (table[i][j] != 0) {
+                    //油田があると回答した候補
+                    for (int k = 0; k < setOfOilOffset.oilOffsets.length; k++) {
+                        realtimeUpdate(k, setOfOilOffset.oilOffsets[k], true);
+                    }
+                }
             }
         }
+
+        public void realtimeUpdate(int n, OilOffset offset, boolean up) {
+            var offx = offset.offsetX;
+            var offy = offset.offsetY;
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    if (0 <= offx - x && offx - x < offsetCount[n].length
+                            && 0 <= offy - y && offy - y < offsetCount[n][0].length) {
+                        var d = (3 - (x * x) - (y * y));
+                        if (up) {
+                            offsetCount[n][offx - x][offy - y] += d;
+                        } else {
+                            offsetCount[n][offx - x][offy - y] -= d;
+                            offsetCount[n][offx - x][offy - y] = Math.max(0, offsetCount[n][offx - x][offy - y]);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     //ランダム油田
     record OilV(SetOfOilOffset sets, long value) {
+        public List<Pair> oillist() {
+            var grid = this.sets.actual;
+            var list = new LinkedList<Pair>();
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid.length; j++) {
+                    if (grid[i][j] > 0) {
+                        list.add(new Pair(i, j));
+                    }
+                }
+            }
+            return list;
+        }
     }
 
     public static class SetOfOilOffset {
@@ -601,7 +452,6 @@ public class Main {
                 hash += "[" + offset.offsetX + ":" + offset.offsetY + "]";
             }
             for (OilOffset offset : oilOffsets) {
-                //todo: ここの最適化
                 var xoff = offset.offsetX;
                 var yoff = offset.offsetY;
                 var oilgird = offset.oilFieldSet.oil;
@@ -621,6 +471,19 @@ public class Main {
                     acc[j][i] += acc[j - 1][i];
                 }
             }
+        }
+
+        public List<Pair> oillist() {
+            var grid = this.actual;
+            var list = new LinkedList<Pair>();
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid.length; j++) {
+                    if (grid[i][j] > 0) {
+                        list.add(new Pair(i, j));
+                    }
+                }
+            }
+            return list;
         }
 
         public int count(int sx, int sy, int ex, int ey) {
@@ -757,9 +620,6 @@ public class Main {
         }
     }
 
-    public static class MicroGuesser {
-
-    }
 
     public static class OilFieldSet {
         private final boolean[][] oil;
