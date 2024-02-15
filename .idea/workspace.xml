@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン3-c&#10;&#10;評価値にこっちも標準偏差でずらすことにした">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
@@ -397,7 +397,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707912633767</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="バージョン3-c&#10;&#10;評価値にこっちも標準偏差でずらすことにした">
+      <option name="closed" value="true" />
+      <created>1707957990568</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1707957990568</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,6 +448,7 @@
     <MESSAGE value="バージョン2.5&#10;&#10;コスト&#10;28852.310340545977&#10;性能改善" />
     <MESSAGE value="バージョン2.6&#10;&#10;コスト&#10;複雑ケースに対処中" />
     <MESSAGE value="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた" />
-    <option name="LAST_COMMIT_MESSAGE" value="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた" />
+    <MESSAGE value="バージョン3-c&#10;&#10;評価値にこっちも標準偏差でずらすことにした" />
+    <option name="LAST_COMMIT_MESSAGE" value="バージョン3-c&#10;&#10;評価値にこっちも標準偏差でずらすことにした" />
   </component>
 </project>
