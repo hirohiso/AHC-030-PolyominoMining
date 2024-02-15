@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン2.6&#10;&#10;コスト&#10;複雑ケースに対処中">
+    <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/complex/out/0018.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/complex/out/0018.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -113,7 +111,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest.test">
+  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -174,8 +172,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
+        <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
@@ -391,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707879434146</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた">
+      <option name="closed" value="true" />
+      <created>1707912633767</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1707912633767</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,6 +439,7 @@
     <MESSAGE value="バージョン2.4&#10;&#10;コスト&#10;28547.310340545977&#10;3秒越え" />
     <MESSAGE value="バージョン2.5&#10;&#10;コスト&#10;28852.310340545977&#10;性能改善" />
     <MESSAGE value="バージョン2.6&#10;&#10;コスト&#10;複雑ケースに対処中" />
-    <option name="LAST_COMMIT_MESSAGE" value="バージョン2.6&#10;&#10;コスト&#10;複雑ケースに対処中" />
+    <MESSAGE value="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた" />
+    <option name="LAST_COMMIT_MESSAGE" value="バージョン3-b&#10;&#10;最後に候補位置から全探索をしてみた" />
   </component>
 </project>

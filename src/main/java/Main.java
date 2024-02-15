@@ -441,7 +441,13 @@ public class Main {
                     var hamiy = Math.max(0, (j + 1) * dy - y);
                     var b = basetable[(i + 1) * dx - hamix - 1][(j + 1) * dy - 1 - hamiy];
                     var t = set.count(i * dx - hamix, j * dy - hamiy, (i + 1) * dx - hamix - 1, (j + 1) * dy - 1 - hamiy);
-                    result += (b - t) * (b - t);
+
+                    var p = random.nextGaussian();
+                    var k = dx * dy;
+                    var mean = (k - t) * errorRatio + t * (1 - errorRatio);
+                    var vari = k * (1 - errorRatio) * errorRatio;
+                    var vs = Math.max(0, Math.round(p * vari + mean));
+                    result += (b - vs) * (b - vs);
                 }
             }
             return result;
