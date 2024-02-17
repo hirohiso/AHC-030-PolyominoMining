@@ -54,7 +54,7 @@ public class Main {
             if (oilList.size() >= 15 && max - cnt <= 2 * minsize || greedyMode) {
                 greedyMode = false;
                 var listlist = searchOil(result, macroGuesser, N);
-                if ( listlist.size() <= oilList.size() + 3) {
+                if (listlist.size() <= oilList.size() + 3) {
                     var loopflg = true;
                     while (loopflg) {
                         loopflg = false;
@@ -62,7 +62,7 @@ public class Main {
                             if (list.size() == 0) {
                                 loopflg |= false;
                                 continue;
-                            }else{
+                            } else {
                                 loopflg |= true;
                             }
                             var pair = list.pollFirst();
@@ -98,7 +98,9 @@ public class Main {
             }
             if (flg) {
                 //初回以外は実施
-                macroGuesser.recal(result);
+                if(!macroGuesser.recal(result)){
+                    break LOOP;
+                }
             } else {
                 flg = true;
             }
@@ -110,7 +112,7 @@ public class Main {
                 }
             }
             var list = macroGuesser.highPoint(max, result);
-            if(list.size() == 0){
+            if (list.size() == 0) {
                 //幅優先探索実行
                 greedyMode = true;
             }
@@ -134,11 +136,15 @@ public class Main {
                 } else {
                     macroGuesser.setOil(pair.a, pair.b);
                 }
+                if (rand.nextDouble() >= ((double) connector.counter / (N * N))) {
+                    break;
+                }
             }
         }
         //回答フェーズ
         var list = result.resultList();
         connector.answer(list);
+        pw.println("#break");
         /**/
     }
 
@@ -320,19 +326,24 @@ public class Main {
             //1000件ランダムに候補を生成してそれっぽいものを使って初期の確度を決める
             var genes = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
             //todo: 初期に何件生成するか
-            for (int i = 0; i < 3000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 var temp = generate();
                 var v = calgosa(baseTable, dx, dy, temp);
                 genes.add(new OilV(temp, v));
             }
-            //上位３０件を使って、それっぽい期待値を作成する
             var select = new LinkedList<OilV>();
-            //todo: 上位何件利用するか
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 100; i++) {
                 select.add(genes.poll());
             }
             var simu = new int[x][y];
             var sum = 0;
+            for (int i = 0; i < offsetCount.length; i++) {
+                for (int j = 0; j < offsetCount[i].length; j++) {
+                    for (int k = 0; k < offsetCount[i][j].length; k++) {
+                        offsetCount[i][j][k] = 0;
+                    }
+                }
+            }
             for (OilV v : select) {
                 var oil = v.sets.actual;
                 for (int i = 0; i < oil.length; i++) {
@@ -341,20 +352,37 @@ public class Main {
                         sum += oil[i][j];
                     }
                 }
+                //良い解は選ばれやすくしたい
+                var sets = v.sets.oilOffsets;
+                var setidx = 0;
+                for (OilOffset offset : sets) {
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            if (0 <= offset.offsetX + i && offset.offsetX + i < x
+                                    && 0 <= offset.offsetY + j && offset.offsetY + j < y) {
+                                offsetCount[setidx][offset.offsetX + i][offset.offsetY + j] += (3 - (i * i) - (j * j));
+                            }
+                        }
+                    }
+                    setidx++;
+                }
+
             }
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
                     table[i][j] = (double) simu[i][j] / sum;
                 }
             }
+
+
         }
 
-        public void recal(MiningResult result) {
+        public boolean recal(MiningResult result) {
             var x = table.length;
             var y = table[0].length;
 
             //todo: 何件生成するか
-            var select = new TreeMap<OilV, Long>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
+            var select = new TreeMap<OilV, Long>(Comparator.<OilV>comparingLong(oilV -> oilV.value).thenComparing(oilV -> oilV.sets.hash));
             var queue = new PriorityQueue<OilV>(Comparator.<OilV>comparingLong(oilV -> oilV.value));
             updateGenerators();
             for (int i = 0; i < GENERATE_NUMBER; i++) {
@@ -377,10 +405,7 @@ public class Main {
             }
 
             if (select.size() == 0) {
-                //良い解候補がない場合は、一回退避していたやつを召喚
-                for (var oilv : queue) {
-                    select.merge(oilv, 1l, Long::sum);
-                }
+                return false;
             }
             var simu = new int[x][y];
             var sum = 0;
@@ -404,10 +429,22 @@ public class Main {
             /*
             System.out.println(select);
              */
-            var count = 0;
+            for (int i = 0; i < offsetCount.length; i++) {
+                for (int j = 0; j < offsetCount[i].length; j++) {
+                    for (int k = 0; k < offsetCount[i][j].length; k++) {
+                        offsetCount[i][j][k] /= 2;//学習しすぎ内容に半分にしておく
+                    }
+                }
+            }
+            var count = 0l; //最大１００件まで加える
             for (var en : select.entrySet()) {
                 var v = en.getKey();
                 var k = en.getValue();
+
+                if((count + k <= 100)){
+                    k = 100l - count;
+                }
+                count += k;
 
                 var oil = v.sets.actual;
                 for (int i = 0; i < oil.length; i++) {
@@ -418,27 +455,34 @@ public class Main {
                 }
 
                 //良い解は選ばれやすくしたい
-                if (count < 5) {
-                    var sets = en.getKey().sets.oilOffsets;
-                    var setidx = 0;
-                    for (OilOffset offset : sets) {
-                        for (int i = -1; i <= 1; i++) {
-                            for (int j = -1; j <= 1; j++) {
-                                if (0 <= i && i < x && 0 <= j && j < y) {
-                                    offsetCount[setidx][offset.offsetX][offset.offsetY] += (3 - (i * i) - (j * j));
-                                }
+
+                var sets = en.getKey().sets.oilOffsets;
+                var setidx = 0;
+                for (OilOffset offset : sets) {
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            if (0 <= offset.offsetX + i && offset.offsetX + i < x
+                                    && 0 <= offset.offsetY + j && offset.offsetY + j < y) {
+                                offsetCount[setidx][offset.offsetX + i][offset.offsetY + j] += (3 - (i * i) - (j * j));
                             }
                         }
-                        setidx++;
                     }
+                    setidx++;
                 }
-                count++;
+                if(count > 100l){
+                    break;
+                }
             }
+
+            System.out.println("===============");
             for (int i = 0; i < x; i++) {
                 for (int j = 0; j < y; j++) {
+                    System.out.print((simu[i][j] / 10) + ",");
                     table[i][j] = (double) simu[i][j] / sum;
                 }
+                System.out.println();
             }
+            return true;
         }
 
         //違反数チェック
@@ -477,7 +521,13 @@ public class Main {
                     var hamiy = Math.max(0, (j + 1) * dy - y);
                     var b = basetable[(i + 1) * dx - hamix - 1][(j + 1) * dy - 1 - hamiy];
                     var t = set.count(i * dx - hamix, j * dy - hamiy, (i + 1) * dx - hamix - 1, (j + 1) * dy - 1 - hamiy);
-                    result += (b - t) * (b - t);
+
+                    var p = random.nextGaussian();
+                    var k = dx * dy;
+                    var mean = (k - t) * errorRatio + t * (1 - errorRatio);
+                    var vari = k * (1 - errorRatio) * errorRatio;
+                    var vs = Math.max(0, Math.round(p * vari + mean));
+                    result += (b - vs) * (b - vs);
                 }
             }
             return result;

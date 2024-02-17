@@ -85,7 +85,7 @@ class MainTest extends Specification {
                     countNo++;
                 }
 
-            } else {
+            } else if(token[0] == "a"){
                 //回答
                 actual = valid(str, grid)
                 if (actual) {
@@ -96,11 +96,15 @@ class MainTest extends Specification {
                     //コスト改善率　= 実際のコスト /全部めくった時のコスト(N^2)
                     print result.name + "," + (n * n) + "," + m + "," + grid.collect { it -> it.sum() }.sum() + "," + cost + "," + zeromine + "," + totalmine
                     println()
-                    break;
+                    break
                 } else {
                     outs.write("0\n".getBytes("UTF-8"))
                     outs.flush()
                     cost += 1
+                }
+            }else{
+                if(str == "#break"){
+                    break
                 }
             }
         }
@@ -110,7 +114,7 @@ class MainTest extends Specification {
         thread.join()
 
         where:
-        inFile << getTxtFilesFromFolder("./src/test/resources/complex/in/")
+        inFile << getTxtFilesFromFolder("./src/test/resources/in/")
     }
 
     //answerがgridと一致しているか判定する
@@ -143,6 +147,6 @@ class MainTest extends Specification {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".txt")
             }
-        })*.path.sort()//[84..84]//[19..19] //todo:一旦絞る
+        })*.path.sort()[19..19] //todo:一旦絞る
     }
 }
