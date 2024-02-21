@@ -5,6 +5,8 @@ build/
 !**/src/test/**/build/
 *-out.txt
 /src/test/resources/out/*.txt
+*.hprof
+
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
