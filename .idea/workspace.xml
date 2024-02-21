@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ce14581c-8a94-4562-ba80-40f8181c6999" name="Changes" comment="バージョン5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java_pid89383.hprof" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/MainTest.groovy" afterDir="false" />
     </list>
@@ -112,7 +113,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MainTest.test">
+  <component name="RunManager" selected="Gradle.PolyominoMining [test]">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="PolyominoMining.main" />
@@ -173,11 +174,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.MainTest.test" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Gradle.PolyominoMining [test]" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.PolyominoMining [test]" />
       </list>
     </recent_temporary>
   </component>

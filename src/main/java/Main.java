@@ -283,14 +283,17 @@ public class Main {
             //todo: 初期に何件生成するか
 
             var marCnt = new int[x * y + 1][x * y + 1];
+            var marCnt2 = new int[x][x * y + 1][x * y + 1];
             var marProv = new double[x * y + 1][x * y + 1];
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 200000; i++) {
                 var temp = generate();
                 var rowSum = temp.rowSum;
                 //初期
                 marCnt[0][rowSum[0]]++;
+                marCnt2[0][0][rowSum[0]]++;
                 for (int j = 1; j < rowcount.length; j++) {
                     marCnt[rowSum[j - 1]][rowSum[j]]++;
+                    marCnt2[j][rowSum[j - 1]][rowSum[j]]++;
                 }
             }
             for (int i = 0; i < marCnt.length; i++) {
@@ -305,6 +308,13 @@ public class Main {
                     marProv[i][j] = (double) marCnt[i][j] / cnt;
                 }
             }
+
+            System.out.println("===================");
+            for (int i = 0; i < marCnt2[0].length; i++) {
+                System.out.println(Arrays.toString(marCnt2[19][i]));
+            }
+
+            System.out.println("===================");
 
             //初期化
             var probfromMar = new double[x][x * y + 1];
